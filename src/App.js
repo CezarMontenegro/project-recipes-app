@@ -11,6 +11,12 @@ function App() {
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route path="/comidas" component={ Receitas } />
+        {/* <Route path="/bebidas" component={ Bebidas } />
+        <Route path="/explorar" component={ Explorar } />
+        <Route path="/ingredientes" component={ Ingredientes } />
+        <Route path="/perfil" component={ Perfil } />
+        <Route path="/receitas-favoritas" component={ ReceitasFavoritas } />
+        <Route path="/receitas-feitas" component={ ReceitasFeitas } /> */}
       </Switch>
     </BrowserRouter>
   );
