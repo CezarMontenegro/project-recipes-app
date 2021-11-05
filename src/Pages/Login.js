@@ -2,11 +2,19 @@ import React, { useState } from 'react';
 
 function Login() {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const SIX = 6;
+  const validateEmail = /\S+@\S+\.\S+/;
 
-  const handleChange = ({ target }) => {
+  const handleEmail = ({ target }) => {
     const { value } = target;
     setEmail(value);
   };
+
+  const handlePassword = ({ target }) => {
+    const { value } = target;
+    setPassword(value)
+  }
 
   return (
     <section>
@@ -14,7 +22,7 @@ function Login() {
         Email:
         <input
           data-testid="email-input"
-          onChange={ handleChange }
+          onChange={ handleEmail }
           name="email"
           id="email"
           value={ email }
@@ -30,14 +38,17 @@ function Login() {
           type="password"
           name="password"
           placeholder="Senha"
+          value={password}
+          onChange={handlePassword}
         />
       </label>
-      {/*  <button
+       <button
+        type="button"
         data-testid="login-submit-btn"
-        onClick={}
+        disabled={ !(validateEmail.test(email) && password.length > SIX) }
       >
       Entrar
-      </button> */}
+      </button>
     </section>
   );
 }
