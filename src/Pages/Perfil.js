@@ -1,8 +1,11 @@
 import React from 'react';
+import Header from '../Components/Header';
 
 function Perfil() {
   return (
-    <p>Perfil</p>
+    <section>
+      <Header />
+    </section>
   );
 }
 
