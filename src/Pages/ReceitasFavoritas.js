@@ -4,7 +4,7 @@ import Header from '../Components/Header';
 function ReceitasFavoritas() {
   return (
     <section>
-      <Header />
+      <Header title="Receitas Favoritas" />
     </section>
   );
 }
