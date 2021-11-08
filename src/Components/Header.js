@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
-import ButtonHeader from './ButtonHeader';
+import ButtonSearch from './ButtonSearch';
+import ReceitasContext from '../Context/ReceitasContext';
 
 function Header({ title }) {
   const history = useHistory();
+  const { visibleSearch } = useContext(ReceitasContext);
   const { location: { pathname } } = history;
   return (
     <header>
@@ -27,7 +29,14 @@ function Header({ title }) {
       || pathname === '/explorar/bebidas/ingredientes'
       || pathname === '/perfil' || pathname === '/receitas-favoritas'
       || pathname === '/explorar/comidas/ingredientes'
-        ? '' : <ButtonHeader /> }
+        ? '' : <ButtonSearch /> }
+      ;
+      { visibleSearch
+      && <input
+        type="text"
+        style={ { display: visibleSearch } }
+        data-testid="search-input"
+      /> }
     </header>
   );
 }
