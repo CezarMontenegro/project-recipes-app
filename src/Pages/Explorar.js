@@ -4,7 +4,7 @@ import Header from '../Components/Header';
 function Explorar() {
   return (
     <section>
-      <Header />
+      <Header title="Explorar" />
     </section>
   );
 }

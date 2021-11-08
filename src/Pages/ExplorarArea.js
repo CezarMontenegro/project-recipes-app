@@ -4,7 +4,7 @@ import Header from '../Components/Header';
 function ExplorarArea() {
   return (
     <section>
-      <Header />
+      <Header title="Explorar Origem" />
     </section>
   );
 }
