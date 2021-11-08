@@ -4,11 +4,17 @@ import PropTypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
 import ButtonSearch from './ButtonSearch';
 import ReceitasContext from '../Context/ReceitasContext';
+import RadioButton from './RadioButton';
 
 function Header({ title }) {
   const history = useHistory();
-  const { visibleSearch } = useContext(ReceitasContext);
+  const { visibleSearch, setSearchValue } = useContext(ReceitasContext);
   const { location: { pathname } } = history;
+
+  const handleChange = ({ target }) => {
+    setSearchValue(target.value);
+  };
+
   return (
     <header>
       <Link to="/perfil">
@@ -32,11 +38,14 @@ function Header({ title }) {
         ? '' : <ButtonSearch /> }
       ;
       { visibleSearch
-      && <input
-        type="text"
-        style={ { display: visibleSearch } }
-        data-testid="search-input"
-      /> }
+        && <input
+          name="searchInput"
+          type="text"
+          style={ { display: visibleSearch } }
+          data-testid="search-input"
+          onChange={ handleChange }
+        />}
+      <RadioButton />
     </header>
   );
 }
