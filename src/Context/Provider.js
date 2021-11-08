@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import ReceitasContext from './Context';
+import ReceitasContext from './ReceitasContext';
 
 function Provider({ children }) {
+  const [visibleSearch, setVisibleSarch] = useState(false);
   const contextValue = {
-
+    visibleSearch,
+    setVisibleSarch,
   };
 
   return (
