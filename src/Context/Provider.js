@@ -10,14 +10,14 @@ function Provider({ children }) {
   const [dataName, setDataName] = useState([]);
   const [dataFirstLetter, setDataFirstLetter] = useState([]);
   const [visibleSearch, setVisibleSarch] = useState(false);
-  const getAPIingredient = async (param) => {
-    setDataIngredient(await ingredientAPI(param));
+  const getAPIingredient = async (url, param) => {
+    setDataIngredient(await ingredientAPI(url, param));
   };
-  const getAPIname = async (param) => {
-    setDataName(await nameAPI(param));
+  const getAPIname = async (url, param) => {
+    setDataName(await nameAPI(url, param));
   };
-  const getAPIFirstLetter = async (param) => {
-    setDataFirstLetter(await firstLetterAPI(param));
+  const getAPIFirstLetter = async (url, param) => {
+    setDataFirstLetter(await firstLetterAPI(url, param));
   };
 
   const contextValue = {

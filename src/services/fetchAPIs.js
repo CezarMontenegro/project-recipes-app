@@ -1,24 +1,18 @@
-const ingredientAPI = async (param) => {
-  const ingredientes = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${param}`);
-
+const ingredientAPI = async (url, param) => {
+  const ingredientes = await fetch(`${url}${param}`);
   const results = await ingredientes.json();
-
   return results;
 };
 
-export const nameAPI = async (param) => {
-  const name = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${param}`);
-
+export const nameAPI = async (url, param) => {
+  const name = await fetch(`${url}${param}`);
   const results = await name.json();
-
   return results;
 };
 
-export const firstLetterAPI = async (param) => {
-  const firstLetter = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${param}`);
-
+export const firstLetterAPI = async (url, param) => {
+  const firstLetter = await fetch(`${url}${param}`);
   const results = await firstLetter.json();
-
   return results;
 };
 
