@@ -36,12 +36,10 @@ function Header({ title }) {
       || pathname === '/perfil' || pathname === '/receitas-favoritas'
       || pathname === '/explorar/comidas/ingredientes'
         ? '' : <ButtonSearch /> }
-      ;
       { visibleSearch
         && <input
           name="searchInput"
           type="text"
-          style={ { display: visibleSearch } }
           data-testid="search-input"
           onChange={ handleChange }
         />}
