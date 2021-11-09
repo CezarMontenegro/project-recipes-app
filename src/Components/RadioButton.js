@@ -1,44 +1,59 @@
-import React, { useContext } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ReceitasContext from '../Context/ReceitasContext';
+import urlLetraBebidas, { urlIngredientsBebidas, urlIngredientsComidas,
+  urlLetraComidas, urlNameBebidas, urlNameComidas } from '../helper/helper';
 
 function RadioButton() {
   const history = useHistory();
   const { location: { pathname } } = history;
 
-  const { setRadioButtonValue,
+  const { setRadioButtonValue, dataApi,
     searchValue, radioButtonValue,
     getAPIingredient, getAPIname,
     getAPIFirstLetter } = useContext(ReceitasContext);
-
-  const urlIngredientsComidas = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
-  const urlNameComidas = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-  const urlLetraComidas = 'https://www.themealdb.com/api/json/v1/1/search.php?f=';
-
-  const urlIngredientsBebidas = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=';
-  const urlNameBebidas = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-  const urlLetraBebidas = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=';
 
   const handleChange = ({ target }) => {
     setRadioButtonValue(target.value);
   };
 
-  const handleClick = async () => {
+  const redirectPage = () => {
+    if (pathname === '/comidas') {
+      history.push(`/comidas/${dataApi.meals[0].idMeal}`);
+    } else {
+      history.push(`/bebidas/${dataApi.drinks[0].idDrink}`);
+    }
+  };
+
+  useEffect(() => {
+    if (dataApi.meals && dataApi.meals.length === 1) redirectPage();
+  }, [dataApi]);
+
+  useEffect(() => {
+    if (dataApi.drinks && dataApi.drinks.length === 1) redirectPage();
+  }, [dataApi]);
+
+  const verifyRadioValue = () => {
     if (radioButtonValue === 'ingredient') {
-      await getAPIingredient(pathname === '/comidas'
+      getAPIingredient(pathname === '/comidas'
         ? urlIngredientsComidas : urlIngredientsBebidas, searchValue);
     }
     if (radioButtonValue === 'name') {
-      await getAPIname(pathname === '/comidas'
+      getAPIname(pathname === '/comidas'
         ? urlNameComidas : urlNameBebidas, searchValue);
     }
     if (radioButtonValue === 'first-letter' && searchValue.length === 1) {
-      await getAPIFirstLetter(pathname === '/comidas'
+      getAPIFirstLetter(pathname === '/comidas'
         ? urlLetraComidas : urlLetraBebidas, searchValue);
     }
     if (radioButtonValue === 'first-letter' && searchValue.length > 1) {
       global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
+  };
+
+  const handleClick = () => {
+    verifyRadioValue();
   };
 
   return (

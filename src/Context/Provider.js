@@ -6,34 +6,31 @@ import ingredientAPI, { firstLetterAPI, nameAPI } from '../services/fetchAPIs';
 function Provider({ children }) {
   const [radioButtonValue, setRadioButtonValue] = useState('');
   const [searchValue, setSearchValue] = useState('');
-  const [dataIngredient, setDataIngredient] = useState([]);
-  const [dataName, setDataName] = useState([]);
-  const [dataFirstLetter, setDataFirstLetter] = useState([]);
+  const [dataApi, setDataApi] = useState([]);
   const [visibleSearch, setVisibleSarch] = useState(false);
+
   const getAPIingredient = async (url, param) => {
-    setDataIngredient(await ingredientAPI(url, param));
+    setDataApi(await ingredientAPI(url, param));
   };
   const getAPIname = async (url, param) => {
-    setDataName(await nameAPI(url, param));
+    setDataApi(await nameAPI(url, param));
   };
   const getAPIFirstLetter = async (url, param) => {
-    setDataFirstLetter(await firstLetterAPI(url, param));
+    setDataApi(await firstLetterAPI(url, param));
   };
 
   const contextValue = {
     visibleSearch,
     setVisibleSarch,
-    dataIngredient,
-    dataName,
+    dataApi,
     setSearchValue,
+    setDataApi,
     searchValue,
     getAPIname,
     getAPIingredient,
     getAPIFirstLetter,
     setRadioButtonValue,
     radioButtonValue,
-    dataFirstLetter,
-    setDataFirstLetter,
   };
 
   return (
