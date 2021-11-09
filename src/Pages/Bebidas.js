@@ -2,12 +2,13 @@ import React, { useContext } from 'react';
 import Header from '../Components/Header';
 import ButtonSearch from '../Components/ButtonSearch';
 import ReceitasContext from '../Context/ReceitasContext';
+import Footer from '../Components/Footer';
 
 function Bebidas() {
   const { dataApi } = useContext(ReceitasContext);
   const NUMBER = 12;
   return (
-    <section>
+    <div>
       <Header title="Bebidas">
         <ButtonSearch />
       </Header>
@@ -22,7 +23,8 @@ function Bebidas() {
             />
             <h3 data-testid={ `${index}-card-name` }>{strDrink}</h3>
           </div>))}
-    </section>
+      <Footer />
+    </div>
   );
 }
 
