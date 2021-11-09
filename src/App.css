@@ -42,12 +42,12 @@ div {
 }
 
 .footer-app {
+  background-color: rgb(243, 222, 222);
+  bottom: 0;
   display: flex;
   justify-content: space-around;
-  bottom: 0;
-  width: 100%;
-  background-color: rgb(243, 222, 222);
   position: fixed;
+  width: 100%;
 }
 
 @keyframes shake {
