@@ -1,14 +1,16 @@
 import React from 'react';
 import ButtonSearch from '../Components/ButtonSearch';
+import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 
 function ExplorarArea() {
   return (
-    <section>
+    <div>
       <Header title="Explorar Origem">
         <ButtonSearch />
       </Header>
-    </section>
+      <Footer />
+    </div>
   );
 }
 

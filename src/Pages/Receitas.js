@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import ButtonSearch from '../Components/ButtonSearch';
+import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import ReceitasContext from '../Context/ReceitasContext';
 
@@ -22,6 +23,7 @@ function Receitas() {
             />
             <h3 data-testid={ `${index}-card-name` }>{strMeal}</h3>
           </div>))}
+      <Footer />
     </div>
   );
 }

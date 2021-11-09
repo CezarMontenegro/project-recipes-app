@@ -37,6 +37,19 @@
   font-weight: 900;
 }
 
+div {
+  height: 100%;
+}
+
+.footer-app {
+  display: flex;
+  justify-content: space-around;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(243, 222, 222);
+  position: fixed;
+}
+
 @keyframes shake {
 
   0% {
