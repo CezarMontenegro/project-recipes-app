@@ -16,3 +16,7 @@ code {
   display: flex;
   flex-direction: column;
 }
+
+.img-meals {
+  width: 150px;
+}
