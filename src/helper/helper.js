@@ -6,4 +6,6 @@ export const urlIngredientsBebidas = 'https://www.thecocktaildb.com/api/json/v1/
 export const urlNameBebidas = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 const urlLetraBebidas = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=';
 
+export const urlIngredientsBebidasInital = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+
 export default urlLetraBebidas;

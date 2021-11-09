@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Header from '../Components/Header';
 import ButtonSearch from '../Components/ButtonSearch';
 import ReceitasContext from '../Context/ReceitasContext';
+import { urlIngredientsBebidasInital } from '../helper/helper';
 import Footer from '../Components/Footer';
 
 function Bebidas() {
-  const { dataApi } = useContext(ReceitasContext);
+  const { dataApi, getAPIingredient } = useContext(ReceitasContext);
   const NUMBER = 12;
+
+  useEffect(() => { getAPIingredient(urlIngredientsBebidasInital, ''); }, []);
+
   return (
     <div>
       <Header title="Bebidas">
