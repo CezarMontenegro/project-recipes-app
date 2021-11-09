@@ -11,7 +11,8 @@ function RadioButton() {
 
   const { setRadioButtonValue, dataApi,
     searchValue, radioButtonValue,
-    getAPIingredient, getAPIname, getAPIFirstLetter } = useContext(ReceitasContext);
+    getAPIingredient, getAPIname,
+    getAPIFirstLetter } = useContext(ReceitasContext);
 
   const handleChange = ({ target }) => {
     setRadioButtonValue(target.value);
