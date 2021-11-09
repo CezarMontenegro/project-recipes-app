@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ButtonSearch from '../Components/ButtonSearch';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import ReceitasContext from '../Context/ReceitasContext';
+import { urlIngredientsComidas } from '../helper/helper';
 
 function Receitas() {
-  const { dataApi } = useContext(ReceitasContext);
+  const { dataApi, getAPIingredient } = useContext(ReceitasContext);
   const NUMBER = 12;
+
+  useEffect(() => { getAPIingredient(urlIngredientsComidas, ''); }, []);
+
   return (
     <div>
       <Header title="Comidas">
@@ -22,6 +26,7 @@ function Receitas() {
               data-testid={ `${index}-card-img` }
             />
             <h3 data-testid={ `${index}-card-name` }>{strMeal}</h3>
+            {console.log(index)}
           </div>))}
       <Footer />
     </div>
