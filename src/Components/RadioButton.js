@@ -8,7 +8,8 @@ function RadioButton() {
 
   const { setRadioButtonValue,
     searchValue, radioButtonValue,
-    getAPIingredient, getAPIname, getAPIFirstLetter } = useContext(ReceitasContext);
+    getAPIingredient, getAPIname,
+    getAPIFirstLetter } = useContext(ReceitasContext);
 
   const urlIngredientsComidas = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
   const urlNameComidas = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -22,17 +23,17 @@ function RadioButton() {
     setRadioButtonValue(target.value);
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (radioButtonValue === 'ingredient') {
-      getAPIingredient(pathname === '/comidas'
+      await getAPIingredient(pathname === '/comidas'
         ? urlIngredientsComidas : urlIngredientsBebidas, searchValue);
     }
     if (radioButtonValue === 'name') {
-      getAPIname(pathname === '/comidas'
+      await getAPIname(pathname === '/comidas'
         ? urlNameComidas : urlNameBebidas, searchValue);
     }
     if (radioButtonValue === 'first-letter' && searchValue.length === 1) {
-      getAPIFirstLetter(pathname === '/comidas'
+      await getAPIFirstLetter(pathname === '/comidas'
         ? urlLetraComidas : urlLetraBebidas, searchValue);
     }
     if (radioButtonValue === 'first-letter' && searchValue.length > 1) {
