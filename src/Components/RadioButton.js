@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ReceitasContext from '../Context/ReceitasContext';
@@ -28,10 +27,16 @@ function RadioButton() {
 
   useEffect(() => {
     if (dataApi.meals && dataApi.meals.length === 1) redirectPage();
+    if ((dataApi.meals && dataApi.meals.length === 0) || dataApi.meals === null) {
+      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    }
   }, [dataApi]);
 
   useEffect(() => {
     if (dataApi.drinks && dataApi.drinks.length === 1) redirectPage();
+    if ((dataApi.drinks && dataApi.drinks.length === 0) || dataApi.drinks === null) {
+      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    }
   }, [dataApi]);
 
   const verifyRadioValue = () => {
