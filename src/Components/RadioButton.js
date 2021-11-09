@@ -62,40 +62,45 @@ function RadioButton() {
   };
 
   return (
-    <div>
-      <input
-        type="radio"
-        data-testid="ingredient-search-radio"
-        name="radio-input"
-        onChange={ handleChange }
-        value="ingredient"
-      />
-      Ingrediente
-      <input
-        type="radio"
-        data-testid="name-search-radio"
-        name="radio-input"
-        onChange={ handleChange }
-        value="name"
-      />
-      Nome
-      <input
-        type="radio"
-        data-testid="first-letter-search-radio"
-        name="radio-input"
-        onChange={ handleChange }
-        value="first-letter"
-      />
-      {' '}
-      Primeira letra
-      <button
-        type="button"
-        data-testid="exec-search-btn"
-        onClick={ handleClick }
-      >
-        Buscar
-      </button>
-    </div>
+    <section className="radio-form">
+      <form className="form-check form-check-inline">
+        <input
+          className="form-check-input"
+          type="radio"
+          data-testid="ingredient-search-radio"
+          name="radio-input"
+          onChange={ handleChange }
+          value="ingredient"
+        />
+        Ingrediente
+        <input
+          className="form-check-input"
+          type="radio"
+          data-testid="name-search-radio"
+          name="radio-input"
+          onChange={ handleChange }
+          value="name"
+        />
+        Nome
+        <input
+          type="radio"
+          data-testid="first-letter-search-radio"
+          name="radio-input"
+          onChange={ handleChange }
+          value="first-letter"
+        />
+        {' '}
+        Primeira letra
+        <button
+          className="btn btn-primary"
+          type="button"
+          data-testid="exec-search-btn"
+          onClick={ handleClick }
+        >
+          Buscar
+        </button>
+      </form>
+    </section>
   );
 }
 
