@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReceitasContext from './ReceitasContext';
-import ingredientAPI, { categoriesData, firstLetterAPI,
+import ingredientAPI, { categoriesData, filterCategory, firstLetterAPI,
   nameAPI } from '../services/fetchAPIs';
 
 function Provider({ children }) {
@@ -9,6 +9,7 @@ function Provider({ children }) {
   const [searchValue, setSearchValue] = useState('');
   const [dataApi, setDataApi] = useState([]);
   const [dataCategories, setDataCategories] = useState([]);
+  const [dataFilterCategory, setDataFilterCategory] = useState([]);
   const [visibleSearch, setVisibleSarch] = useState(false);
 
   const getAPIingredient = async (url, param) => {
@@ -22,6 +23,10 @@ function Provider({ children }) {
   };
   const getApiCategories = async (url) => {
     setDataCategories(await categoriesData(url));
+  };
+
+  const getApiFilter = async (url, param) => {
+    setDataFilterCategory(await filterCategory(url, param));
   };
 
   const contextValue = {
@@ -38,6 +43,9 @@ function Provider({ children }) {
     getApiCategories,
     dataCategories,
     radioButtonValue,
+    dataFilterCategory,
+    setDataFilterCategory,
+    getApiFilter,
   };
 
   return (

@@ -22,4 +22,10 @@ export const categoriesData = async (url) => {
   return results;
 };
 
+export const filterCategory = async (url, param) => {
+  const fetchFilterCategory = await fetch(`${url}${param}`);
+  const results = await fetchFilterCategory.json();
+  return results;
+};
+
 export default ingredientAPI;

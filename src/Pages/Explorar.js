@@ -7,6 +7,7 @@ function Explorar() {
     <div>
       <Header title="Explorar" />
       <Footer />
+
     </div>
   );
 }
