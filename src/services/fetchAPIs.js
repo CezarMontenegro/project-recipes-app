@@ -16,4 +16,10 @@ export const firstLetterAPI = async (url, param) => {
   return results;
 };
 
+export const categoriesData = async (url) => {
+  const fetchCategories = await fetch(url);
+  const results = await fetchCategories.json();
+  return results;
+};
+
 export default ingredientAPI;

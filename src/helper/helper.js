@@ -5,6 +5,8 @@ export const urlLetraComidas = 'https://www.themealdb.com/api/json/v1/1/search.p
 export const urlIngredientsBebidas = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=';
 export const urlNameBebidas = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 const urlLetraBebidas = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=';
+export const urlCategoriesFood = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+export const urlCategoriesDrinks = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 
 export const urlIngredientsBebidasInital = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 

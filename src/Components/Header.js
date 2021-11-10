@@ -14,7 +14,7 @@ function Header({ title, children }) {
   return (
     <header>
       <nav className="navbar navbar-light bg-light">
-        <Link to="/perfil" class="navbar-brand">
+        <Link to="/perfil" className="navbar-brand">
           <img
             className="d-inline-block align-top"
             data-testid="profile-top-btn"
