@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReceitasContext from './ReceitasContext';
-import ingredientAPI, { firstLetterAPI, nameAPI } from '../services/fetchAPIs';
+import ingredientAPI, { categoriesData, firstLetterAPI,
+  nameAPI } from '../services/fetchAPIs';
 
 function Provider({ children }) {
   const [radioButtonValue, setRadioButtonValue] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [dataApi, setDataApi] = useState([]);
+  const [dataCategories, setDataCategories] = useState([]);
   const [visibleSearch, setVisibleSarch] = useState(false);
 
   const getAPIingredient = async (url, param) => {
@@ -17,6 +19,9 @@ function Provider({ children }) {
   };
   const getAPIFirstLetter = async (url, param) => {
     setDataApi(await firstLetterAPI(url, param));
+  };
+  const getApiCategories = async (url) => {
+    setDataCategories(await categoriesData(url));
   };
 
   const contextValue = {
@@ -30,6 +35,8 @@ function Provider({ children }) {
     getAPIingredient,
     getAPIFirstLetter,
     setRadioButtonValue,
+    getApiCategories,
+    dataCategories,
     radioButtonValue,
   };
 

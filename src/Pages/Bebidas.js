@@ -1,21 +1,35 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react';
 import Header from '../Components/Header';
 import ButtonSearch from '../Components/ButtonSearch';
 import ReceitasContext from '../Context/ReceitasContext';
-import { urlIngredientsBebidasInital } from '../helper/helper';
+import { urlCategoriesDrinks, urlIngredientsBebidasInital } from '../helper/helper';
 import Footer from '../Components/Footer';
 
 function Bebidas() {
-  const { dataApi, getAPIingredient } = useContext(ReceitasContext);
+  const { dataApi, getAPIingredient, getApiCategories,
+    dataCategories } = useContext(ReceitasContext);
   const NUMBER = 12;
+  const maxCategories = 5;
 
   useEffect(() => { getAPIingredient(urlIngredientsBebidasInital, ''); }, []);
+  useEffect(() => { getApiCategories(urlCategoriesDrinks); }, []);
 
   return (
     <div>
       <Header title="Bebidas">
         <ButtonSearch />
       </Header>
+      {dataCategories.drinks && dataCategories.drinks.slice(0, maxCategories)
+        .map(({ strCategory }, index) => (
+          <button
+            key={ index }
+            type="button"
+            data-testid={ `${strCategory}-category-filter` }
+          >
+            {strCategory}
+          </button>
+        ))}
       <section className="display-card">
         {dataApi.drinks && dataApi.drinks.slice(0, NUMBER)
           .map(({ strDrink, idDrink, strDrinkThumb }, index) => (
