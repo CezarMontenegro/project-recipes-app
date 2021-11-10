@@ -6,6 +6,7 @@ const ButtonSearch = () => {
   const { setVisibleSarch, visibleSearch } = useContext(ReceitasContext);
   return (
     <button
+      className="img-search"
       type="button"
       onClick={ () => setVisibleSarch(!visibleSearch) }
     >

@@ -13,27 +13,30 @@ function Header({ title, children }) {
 
   return (
     <header>
-      <Link to="/perfil">
-        <img
-          data-testid="profile-top-btn"
-          src={ profileIcon }
-          alt="Ícone de perfil"
-        />
-      </Link>
+      <nav className="navbar navbar-light bg-light">
+        <Link to="/perfil" class="navbar-brand">
+          <img
+            className="d-inline-block align-top"
+            data-testid="profile-top-btn"
+            src={ profileIcon }
+            alt="Ícone de perfil"
+          />
+        </Link>
 
-      <h2
-        data-testid="page-title"
-      >
-        { title }
-      </h2>
-      { children }
-      { visibleSearch
-        && <input
-          name="searchInput"
-          type="text"
-          data-testid="search-input"
-          onChange={ handleChange }
-        />}
+        <h2
+          data-testid="page-title"
+        >
+          { title }
+        </h2>
+        { children }
+        { visibleSearch
+          && <input
+            name="searchInput"
+            type="text"
+            data-testid="search-input"
+            onChange={ handleChange }
+          />}
+      </nav>
       <RadioButton />
     </header>
   );

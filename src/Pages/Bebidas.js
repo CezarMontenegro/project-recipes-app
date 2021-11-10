@@ -16,17 +16,31 @@ function Bebidas() {
       <Header title="Bebidas">
         <ButtonSearch />
       </Header>
-      {dataApi.drinks && dataApi.drinks.slice(0, NUMBER)
-        .map(({ strDrink, idDrink, strDrinkThumb }, index) => (
-          <div key={ idDrink } data-testid={ `${index}-recipe-card` }>
-            <img
-              className="img-meals"
-              src={ strDrinkThumb }
-              alt={ strDrink }
-              data-testid={ `${index}-card-img` }
-            />
-            <h3 data-testid={ `${index}-card-name` }>{strDrink}</h3>
-          </div>))}
+      <section className="display-card">
+        {dataApi.drinks && dataApi.drinks.slice(0, NUMBER)
+          .map(({ strDrink, idDrink, strDrinkThumb }, index) => (
+            <div
+              key={ idDrink }
+              data-testid={ `${index}-recipe-card` }
+              className="card div-card col-sm-2 card-food"
+            >
+              <img
+                className="card-img-top"
+                src={ strDrinkThumb }
+                alt={ strDrink }
+                data-testid={ `${index}-card-img` }
+              />
+              <div className="card-body">
+                <h5
+                  className="card-text"
+                  data-testid={ `${index}-card-name` }
+                >
+                  {strDrink}
+
+                </h5>
+              </div>
+            </div>))}
+      </section>
       <Footer />
     </div>
   );

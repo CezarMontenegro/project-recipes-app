@@ -16,18 +16,31 @@ function Receitas() {
       <Header title="Comidas">
         <ButtonSearch />
       </Header>
-      {dataApi.meals && dataApi.meals.slice(0, NUMBER)
-        .map(({ idMeal, strMeal, strMealThumb }, index) => (
-          <div key={ idMeal } data-testid={ `${index}-recipe-card` }>
-            <img
-              className="img-meals"
-              src={ strMealThumb }
-              alt={ strMeal }
-              data-testid={ `${index}-card-img` }
-            />
-            <h3 data-testid={ `${index}-card-name` }>{strMeal}</h3>
-            {console.log(index)}
-          </div>))}
+      <section className="display-card">
+        {dataApi.meals && dataApi.meals.slice(0, NUMBER)
+          .map(({ idMeal, strMeal, strMealThumb }, index) => (
+            <div
+              key={ idMeal }
+              data-testid={ `${index}-recipe-card` }
+              className="card div-card col-sm-2 card-food"
+            >
+              <img
+                className="card-img-top"
+                src={ strMealThumb }
+                alt={ strMeal }
+                data-testid={ `${index}-card-img` }
+              />
+              <div className="card-body">
+                <h5
+                  className="card-text"
+                  data-testid={ `${index}-card-name` }
+                >
+                  {strMeal}
+
+                </h5>
+              </div>
+            </div>))}
+      </section>
       <Footer />
     </div>
   );
