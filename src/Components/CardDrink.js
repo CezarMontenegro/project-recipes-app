@@ -3,14 +3,12 @@ import { useHistory } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
 
 const CardDrink = () => {
-  const { dataApi, setRender, setId } = useContext(ReceitasContext);
+  const { dataApi } = useContext(ReceitasContext);
   const NUMBER = 12;
   const history = useHistory();
 
   const handleClick = (param) => {
     history.push(`/bebidas/${param}`);
-    setId(param);
-    setRender(true);
   };
 
   return (

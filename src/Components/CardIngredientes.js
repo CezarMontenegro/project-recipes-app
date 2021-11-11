@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import ReceitasContext from '../Context/ReceitasContext';
 
-function CardDrinksIngredientes() {
+function CardIngredientes() {
   const { dataIdCard } = useContext(ReceitasContext);
 
   return (
@@ -23,4 +23,4 @@ function CardDrinksIngredientes() {
   );
 }
 
-export default CardDrinksIngredientes;
+export default CardIngredientes;
