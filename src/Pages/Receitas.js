@@ -11,7 +11,7 @@ import { urlCategoriesFood,
 
 function Receitas() {
   const { getAPIingredient, getApiCategories,
-    dataCategories, dataFilterCategory, getApiFilter } = useContext(ReceitasContext);
+    dataCategories, getApiFilter } = useContext(ReceitasContext);
   const maxCategories = 5;
   const [isFilter, setIsFilter] = useState(false);
 
@@ -20,12 +20,8 @@ function Receitas() {
 
   const handleClickCategory = (param) => {
     getApiFilter(urlFilterFood, param);
+    setIsFilter(!isFilter);
   };
-
-  useEffect(() => {
-    if (dataFilterCategory.meals
-      && dataFilterCategory.meals.length > 0) setIsFilter(!isFilter);
-  }, [dataFilterCategory]);
 
   return (
     <div>

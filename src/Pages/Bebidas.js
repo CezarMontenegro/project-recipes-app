@@ -10,7 +10,7 @@ import CardDrinkFilter from '../Components/CardDrinkFilter';
 
 function Bebidas() {
   const { getAPIingredient, getApiCategories,
-    dataCategories, getApiFilter, dataFilterCategory } = useContext(ReceitasContext);
+    dataCategories, getApiFilter } = useContext(ReceitasContext);
   const maxCategories = 5;
   const [isFilter, setIsFilter] = useState(false);
 
@@ -19,12 +19,8 @@ function Bebidas() {
 
   const handleClickCategory = (param) => {
     getApiFilter(urlFilterDrink, param);
+    setIsFilter(!isFilter);
   };
-
-  useEffect(() => {
-    if (dataFilterCategory.drinks
-      && dataFilterCategory.drinks.length > 0) setIsFilter(!isFilter);
-  }, [dataFilterCategory]);
 
   return (
     <div>
