@@ -13,4 +13,7 @@ export const urlIngredientsBebidasInital = 'https://www.thecocktaildb.com/api/js
 export const urlFilterFood = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
 export const urlFilterDrink = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=';
 
+export const urlIdDrink = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
+export const urlIdFood = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
+
 export default urlLetraBebidas;
