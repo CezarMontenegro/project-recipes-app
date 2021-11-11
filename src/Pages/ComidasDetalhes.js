@@ -3,13 +3,14 @@ import { useParams } from 'react-router-dom';
 import ReceitasContext from '../Context/ReceitasContext';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-import { urlIdFood } from '../helper/helper';
+import { urlIdFood, urlNameBebidas } from '../helper/helper';
 import CardFoodVideo from '../Components/CardFoodVideo';
 
 function ComidaDetalhes() {
-  const { dataIdCard, getCardById } = useContext(ReceitasContext);
+  const { dataIdCard, getCardById, getAPIname } = useContext(ReceitasContext);
   const { id } = useParams();
   useEffect(() => { getCardById(urlIdFood, id); }, []);
+  useEffect(() => { getAPIname(urlNameBebidas, ''); }, []);
 
   return (
     <section>

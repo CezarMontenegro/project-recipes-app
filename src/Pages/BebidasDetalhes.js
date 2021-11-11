@@ -4,12 +4,13 @@ import ReceitasContext from '../Context/ReceitasContext';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import CardDrinksIngredientes from '../Components/CardIngredientes';
-import { urlIdDrink } from '../helper/helper';
+import { urlIdDrink, urlNameComidas } from '../helper/helper';
 
 function BebidasDetalhes() {
-  const { dataIdCard, getCardById } = useContext(ReceitasContext);
+  const { dataIdCard, getCardById, getAPIname } = useContext(ReceitasContext);
   const { id } = useParams();
   useEffect(() => { getCardById(urlIdDrink, id); }, []);
+  useEffect(() => { getAPIname(urlNameComidas, ''); }, []);
 
   return (
     <section>
