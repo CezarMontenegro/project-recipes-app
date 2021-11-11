@@ -1,9 +1,16 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
 
 const CardDrinkFilter = () => {
   const { dataFilterCategory } = useContext(ReceitasContext);
   const NUMBER = 12;
+  const history = useHistory();
+
+  const handleClick = (param) => {
+    history.push(`/bebidas/${param}`);
+  };
+
   return (
     <section className="display-card">
       {dataFilterCategory.drinks && dataFilterCategory.drinks.slice(0, NUMBER)
@@ -13,11 +20,13 @@ const CardDrinkFilter = () => {
             data-testid={ `${index}-recipe-card` }
             className="card div-card col-sm-2 card-food"
           >
-            <img
+            <input
+              type="image"
               className="card-img-top"
               src={ strDrinkThumb }
               alt={ strDrink }
               data-testid={ `${index}-card-img` }
+              onClick={ () => handleClick(idDrink) }
             />
             <div className="card-body">
               <h5
