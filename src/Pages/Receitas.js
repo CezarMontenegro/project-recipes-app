@@ -21,15 +21,12 @@ function Receitas() {
 
   const handleClickCategory = (param) => {
     getApiFilter(urlFilterFood, param);
+    if (param === category) {
+      setIsFilter(false);
+    }
     if (param !== category) {
-      console.log(`param ${param}, category ${category}`, isFilter);
       setCategory(param);
       setIsFilter(true);
-      console.log(`param ${param}, category ${category}`, isFilter);
-    // } else if (param === category) {
-    //   setIsFilter(false);
-    //   category = param;
-    //   console.log(`Segundo if: param ${param}, category ${category}`);
     }
   };
 

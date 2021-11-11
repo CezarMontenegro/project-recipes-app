@@ -13,13 +13,20 @@ function Bebidas() {
     dataCategories, getApiFilter } = useContext(ReceitasContext);
   const maxCategories = 5;
   const [isFilter, setIsFilter] = useState(false);
+  const [category, setCategory] = useState('');
 
   useEffect(() => { getAPIingredient(urlIngredientsBebidasInital, ''); }, []);
   useEffect(() => { getApiCategories(urlCategoriesDrinks); }, []);
 
   const handleClickCategory = (param) => {
     getApiFilter(urlFilterDrink, param);
-    setIsFilter(!isFilter);
+    if (param === category) {
+      setIsFilter(false);
+    }
+    if (param !== category) {
+      setCategory(param);
+      setIsFilter(true);
+    }
   };
 
   return (
