@@ -1,17 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ReceitasContext from '../Context/ReceitasContext';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import CardDrinksIngredientes from '../Components/CardDrinksIngredientes';
 import Loading from '../Components/Loading';
+import { urlIdDrink } from '../helper/helper';
 
 function BebidasDetalhes() {
-  const { dataIdCard } = useContext(ReceitasContext);
+  const { dataIdCard, render, getCardById, id } = useContext(ReceitasContext);
+
+  useEffect(() => { getCardById(urlIdDrink, id); }, []);
 
   return (
     <section>
-      <Loading />
-      { dataIdCard.drinks && dataIdCard.drinks
+      {render ? dataIdCard.drinks && dataIdCard.drinks
         .map(({ strDrink, idDrink, strDrinkThumb }) => (
           <div
             key={ idDrink }
@@ -41,7 +43,7 @@ function BebidasDetalhes() {
             </div>
             <CardDrinksIngredientes />
           </div>
-        ))}
+        )) : <Loading /> }
     </section>
   );
 }

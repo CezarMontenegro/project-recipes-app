@@ -13,7 +13,8 @@ function Provider({ children }) {
   const [dataFilterCategory, setDataFilterCategory] = useState([]);
   const [dataIdCard, setDataIdCard] = useState([]);
   const [ingredients, setIngredients] = useState([]);
-  const [id, setId] = useState('');
+  const [render, setRender] = useState(false);
+  const [id, setId] = useState(0);
 
   const [visibleSearch, setVisibleSarch] = useState(false);
 
@@ -60,6 +61,8 @@ function Provider({ children }) {
     getCardById,
     ingredients,
     setIngredients,
+    render,
+    setRender,
     id,
     setId,
   };
