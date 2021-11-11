@@ -3,14 +3,15 @@ import Header from '../Components/Header';
 import ButtonSearch from '../Components/ButtonSearch';
 import ReceitasContext from '../Context/ReceitasContext';
 import { urlCategoriesDrinks, urlIngredientsBebidasInital,
-  urlFilterDrink } from '../helper/helper';
+  urlFilterDrink,
+  urlNameBebidas } from '../helper/helper';
 import Footer from '../Components/Footer';
 import CardDrink from '../Components/CardDrink';
 import CardDrinkFilter from '../Components/CardDrinkFilter';
 
 function Bebidas() {
   const { getAPIingredient, getApiCategories,
-    dataCategories, getApiFilter } = useContext(ReceitasContext);
+    dataCategories, getApiFilter, getAPIname } = useContext(ReceitasContext);
   const maxCategories = 5;
   const [isFilter, setIsFilter] = useState(false);
   const [category, setCategory] = useState('');
@@ -29,11 +30,25 @@ function Bebidas() {
     }
   };
 
+  const getAllDrinks = () => {
+    getAPIname(urlNameBebidas, '');
+    setCategory('All');
+    setIsFilter(false);
+  };
+
   return (
     <div>
       <Header title="Bebidas">
         <ButtonSearch />
       </Header>
+      <button
+        type="button"
+        data-testid="All-category-filter"
+        onClick={ getAllDrinks }
+      >
+        All
+
+      </button>
       {dataCategories.drinks && dataCategories.drinks.slice(0, maxCategories)
         .map(({ strCategory }, index) => (
           <button

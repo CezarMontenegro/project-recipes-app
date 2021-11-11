@@ -7,11 +7,11 @@ import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import ReceitasContext from '../Context/ReceitasContext';
 import { urlCategoriesFood,
-  urlIngredientsComidas, urlFilterFood } from '../helper/helper';
+  urlIngredientsComidas, urlFilterFood, urlNameComidas } from '../helper/helper';
 
 function Receitas() {
   const { getAPIingredient, getApiCategories,
-    dataCategories, getApiFilter } = useContext(ReceitasContext);
+    dataCategories, getApiFilter, getAPIname } = useContext(ReceitasContext);
   const maxCategories = 5;
   const [isFilter, setIsFilter] = useState(false);
   const [category, setCategory] = useState('');
@@ -30,11 +30,25 @@ function Receitas() {
     }
   };
 
+  const getAllFoods = () => {
+    getAPIname(urlNameComidas, '');
+    setCategory('All');
+    setIsFilter(false);
+  };
+
   return (
     <div>
       <Header title="Comidas">
         <ButtonSearch />
       </Header>
+      <button
+        type="button"
+        data-testid="All-category-filter"
+        onClick={ getAllFoods }
+      >
+        All
+
+      </button>
       {dataCategories.meals && dataCategories.meals.slice(0, maxCategories)
         .map(({ strCategory }, index) => (
           <button
