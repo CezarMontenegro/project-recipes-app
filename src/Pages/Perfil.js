@@ -4,7 +4,7 @@ import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 
 function Perfil() {
-  const { email } = JSON.parse(localStorage.getItem('user'));
+  const result = (localStorage.getItem('user'));
   const history = useHistory();
 
   const handleClick = (path) => history.push(path);
@@ -19,7 +19,7 @@ function Perfil() {
       <Header title="Perfil" />
       <Footer />
       <div className="container-perfil">
-        <h3 data-testid="profile-email" className="radio-form">{email}</h3>
+        <h3 data-testid="profile-email" className="radio-form">{result}</h3>
         <button
           data-testid="profile-done-btn"
           className="btn btn-lg btn-danger"
