@@ -1,8 +1,12 @@
 import React, { useContext } from 'react';
 import ReceitasContext from '../Context/ReceitasContext';
+import getIngredients, { getQuantIngredients } from '../helper/functionsHelper';
 
 function CardFoodVideo() {
   const { dataIdCard } = useContext(ReceitasContext);
+  const cardValues = Object.entries(dataIdCard.meals[0]);
+  const ingredientsValue = getIngredients(cardValues);
+  const quantIngredients = getQuantIngredients(cardValues);
 
   return (
     <section>
@@ -11,7 +15,32 @@ function CardFoodVideo() {
           <div key={ idMeal }>
             <h5 data-testid="recipe-category">{strCategory}</h5>
             <span>
-              <h5 data-testid="0-ingredient-name-and-measure">Ingredientes</h5>
+              <h5>
+                Ingredientes
+                <ul>
+                  { ingredientsValue.map((ingredient, index) => (
+                    <li
+                      key={ index }
+                      data-testid={ `${index}-ingredient-name-and-measure` }
+                    >
+                      {ingredient}
+
+                    </li>
+                  ))}
+                </ul>
+                <h5> Measure </h5>
+                <ul>
+                  { quantIngredients.map((measure, index) => (
+                    <li
+                      key={ index }
+                      data-testid={ `${index}-ingredient-name-and-measure` }
+                    >
+                      {measure}
+
+                    </li>
+                  ))}
+                </ul>
+              </h5>
             </span>
             <h5>Instructions</h5>
             <p data-testid="instructions">{strInstructions}</p>
