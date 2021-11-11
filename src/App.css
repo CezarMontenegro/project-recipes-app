@@ -33,6 +33,16 @@
   margin-left: 10px;
 }
 
+.card-detalhes {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.card-detalhes img {
+  margin-left: 15px;
+}
+
 .display-card {
   display: flex;
   flex-flow: row wrap;
@@ -53,6 +63,11 @@
   margin: 0 auto 25px;
   margin-top: 50px;
   padding: 20px 25px 30px;
+}
+
+.section-detalhes-img {
+  height: 500px;
+  width: 100%;
 }
 
 .profile-img-card {

@@ -28,4 +28,10 @@ export const filterCategory = async (url, param) => {
   return results;
 };
 
+export const cardById = async (url, param) => {
+  const fetchGetDrinkById = await fetch(`${url}${param}`);
+  const results = await fetchGetDrinkById.json();
+  return results;
+};
+
 export default ingredientAPI;

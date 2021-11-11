@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReceitasContext from './ReceitasContext';
-import ingredientAPI, { categoriesData, filterCategory, firstLetterAPI,
+import ingredientAPI, { categoriesData, cardById, filterCategory, firstLetterAPI,
   nameAPI } from '../services/fetchAPIs';
 
 function Provider({ children }) {
   const [radioButtonValue, setRadioButtonValue] = useState('');
   const [searchValue, setSearchValue] = useState('');
+
   const [dataApi, setDataApi] = useState([]);
   const [dataCategories, setDataCategories] = useState([]);
   const [dataFilterCategory, setDataFilterCategory] = useState([]);
+  const [dataIdCard, setDataIdCard] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+  const [id, setId] = useState('');
+
   const [visibleSearch, setVisibleSarch] = useState(false);
 
   const getAPIingredient = async (url, param) => {
@@ -29,6 +34,10 @@ function Provider({ children }) {
     setDataFilterCategory(await filterCategory(url, param));
   };
 
+  const getCardById = async (url, param) => {
+    setDataIdCard(await cardById(url, param));
+  };
+
   const contextValue = {
     visibleSearch,
     setVisibleSarch,
@@ -46,6 +55,13 @@ function Provider({ children }) {
     dataFilterCategory,
     setDataFilterCategory,
     getApiFilter,
+    setDataIdCard,
+    dataIdCard,
+    getCardById,
+    ingredients,
+    setIngredients,
+    id,
+    setId,
   };
 
   return (
