@@ -4,7 +4,7 @@ import ReceitasContext from '../Context/ReceitasContext';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { urlIdFood, urlNameBebidas } from '../helper/helper';
-import CardFoodVideo from '../Components/CardFoodVideo';
+import FoodIngredients from '../Components/FoodIngredients';
 
 function ComidaDetalhes() {
   const { dataIdCard, getCardById, getAPIname } = useContext(ReceitasContext);
@@ -42,7 +42,7 @@ function ComidaDetalhes() {
                 />
               </div>
             </div>
-            <CardFoodVideo />
+            <FoodIngredients />
           </div>
         )) }
     </section>

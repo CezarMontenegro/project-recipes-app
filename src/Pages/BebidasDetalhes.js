@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import ReceitasContext from '../Context/ReceitasContext';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-import CardDrinksIngredientes from '../Components/CardIngredientes';
 import { urlIdDrink, urlNameComidas } from '../helper/helper';
+import DrinksIngredients from '../Components/DrinksIngredients';
 
 function BebidasDetalhes() {
   const { dataIdCard, getCardById, getAPIname } = useContext(ReceitasContext);
@@ -42,7 +42,7 @@ function BebidasDetalhes() {
                 />
               </div>
             </div>
-            <CardDrinksIngredientes />
+            <DrinksIngredients />
           </div>
         )) }
     </section>

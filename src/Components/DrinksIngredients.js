@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import ReceitasContext from '../Context/ReceitasContext';
 import getIngredients, { getQuantIngredients } from '../helper/functionsHelper';
+import UlIngredients from './UlIngredients';
 
-function CardIngredientes() {
+function DrinksIngredients() {
   const { dataIdCard } = useContext(ReceitasContext);
   const cardValues = Object.entries(dataIdCard.drinks[0]);
   const ingredientsValue = getIngredients(cardValues);
@@ -17,34 +18,10 @@ function CardIngredientes() {
               {strCategory}
               <h5>{strAlcoholic}</h5>
             </h5>
-            <span>
-              <h5>
-                Ingredientes
-                <ul>
-                  { ingredientsValue.map((ingredient, index) => (
-                    <li
-                      key={ index }
-                      data-testid={ `${index}-ingredient-name-and-measure` }
-                    >
-                      {ingredient}
-
-                    </li>
-                  ))}
-                </ul>
-                <h5> Measure </h5>
-                <ul>
-                  { quantIngredients.map((measure, index) => (
-                    <li
-                      key={ index }
-                      data-testid={ `${index}-ingredient-name-and-measure` }
-                    >
-                      {measure}
-
-                    </li>
-                  ))}
-                </ul>
-              </h5>
-            </span>
+            <UlIngredients
+              arrayIngredients={ ingredientsValue }
+              arrayMeasure={ quantIngredients }
+            />
             <h5>Instructions</h5>
             <p data-testid="instructions">{strInstructions}</p>
             <h3 data-testid="0-recomendation-card">Recomendadas</h3>
@@ -55,4 +32,4 @@ function CardIngredientes() {
   );
 }
 
-export default CardIngredientes;
+export default DrinksIngredients;
