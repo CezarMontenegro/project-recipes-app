@@ -11,7 +11,7 @@ function FoodIngredients() {
 
   return (
     <section>
-      {dataIdCard.meals
+      {dataIdCard.meals && dataIdCard.meals
         .map(({ idMeal, strCategory, strInstructions, strYoutube }) => (
           <div key={ idMeal }>
             <h5 data-testid="recipe-category">{strCategory}</h5>
