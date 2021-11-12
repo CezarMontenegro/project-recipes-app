@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import ReceitasContext from '../Context/ReceitasContext';
 import getIngredients, { getQuantIngredients } from '../helper/functionsHelper';
+import UlIngredients from './UlIngredients';
 
-function CardFoodVideo() {
+function FoodIngredients() {
   const { dataIdCard } = useContext(ReceitasContext);
   const cardValues = Object.entries(dataIdCard.meals[0]);
   const ingredientsValue = getIngredients(cardValues);
@@ -10,38 +11,14 @@ function CardFoodVideo() {
 
   return (
     <section>
-      { dataIdCard.meals && dataIdCard.meals
+      {dataIdCard.meals
         .map(({ idMeal, strCategory, strInstructions, strYoutube }) => (
           <div key={ idMeal }>
             <h5 data-testid="recipe-category">{strCategory}</h5>
-            <span>
-              <h5>
-                Ingredientes
-                <ul>
-                  { ingredientsValue.map((ingredient, index) => (
-                    <li
-                      key={ index }
-                      data-testid={ `${index}-ingredient-name-and-measure` }
-                    >
-                      {ingredient}
-
-                    </li>
-                  ))}
-                </ul>
-                <h5> Measure </h5>
-                <ul>
-                  { quantIngredients.map((measure, index) => (
-                    <li
-                      key={ index }
-                      data-testid={ `${index}-ingredient-name-and-measure` }
-                    >
-                      {measure}
-
-                    </li>
-                  ))}
-                </ul>
-              </h5>
-            </span>
+            <UlIngredients
+              arrayIngredients={ ingredientsValue }
+              arrayMeasure={ quantIngredients }
+            />
             <h5>Instructions</h5>
             <p data-testid="instructions">{strInstructions}</p>
             <video
@@ -64,4 +41,4 @@ function CardFoodVideo() {
   );
 }
 
-export default CardFoodVideo;
+export default FoodIngredients;
