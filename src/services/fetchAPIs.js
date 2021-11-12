@@ -1,11 +1,7 @@
 const ingredientAPI = async (url, param) => {
-  try {
-    const ingredientes = await fetch(`${url}${param}`);
-    const results = await ingredientes.json();
-    return results;
-  } catch (error) {
-    global.alert(error);
-  }
+  const ingredientes = await fetch(`${url}${param}`);
+  const results = await ingredientes.json();
+  return results;
 };
 
 export const nameAPI = async (url, param) => {

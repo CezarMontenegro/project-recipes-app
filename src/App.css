@@ -54,8 +54,11 @@
 }
 
 .section-detalhes-img {
-  height: 500px;
-  width: 100%;
+  height: 250px;
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .profile-img-card {
