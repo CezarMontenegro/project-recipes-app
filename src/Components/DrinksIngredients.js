@@ -2,7 +2,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
-import getIngredients, { getNumberIngredients, getQuantIngredients } from '../helper/functionsHelper';
+import getIngredients, { getNumberIngredients,
+  getQuantIngredients } from '../helper/functionsHelper';
 import UlIngredients from './UlIngredients';
 
 function DrinksIngredients() {
@@ -46,8 +47,8 @@ function DrinksIngredients() {
   return (
     <section>
       { dataIdCard.drinks && dataIdCard.drinks
-        .map(({ idDrink: id, strCategory, strInstructions, strAlcoholic }) => (
-          <div key={ id }>
+        .map(({ idDrink: strCategory, strInstructions, strAlcoholic }) => (
+          <div key={ idDrink }>
             <h5 data-testid="recipe-category">
               {strCategory}
               <span>{strAlcoholic}</span>
