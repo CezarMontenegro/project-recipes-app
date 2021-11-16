@@ -6,29 +6,33 @@ const UlIngredients = ({ arrayIngredients, arrayMeasure }) => (
     <h5>
       Ingredientes
       <ul>
-        { arrayIngredients.map((ingredient, index) => (
-          <li
-            key={ index }
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
-            {ingredient}
+        { arrayIngredients.map((ingredientValue, index) => {
+          const ingredient = ingredientValue.replace('strIngredient', '')
+            .replace('-', ' - ');
+          return (
+            <li
+              key={ index }
+              data-testid={ `${index}-ingredient-name-and-measure` }
+            >
+              { ingredient }
 
-          </li>
-        ))}
-      </ul>
-      <h5> Measure </h5>
-      <ul>
-        { arrayMeasure.map((measure, index) => (
-          <li
-            key={ index }
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
-            {measure}
-
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
     </h5>
+    <h5> Measure </h5>
+    <ul>
+      { arrayMeasure.map((measure, index) => (
+        <li
+          key={ index }
+          data-testid={ `${index}-ingredient-name-and-measure` }
+        >
+          {measure}
+
+        </li>
+      ))}
+    </ul>
   </section>
 
 );

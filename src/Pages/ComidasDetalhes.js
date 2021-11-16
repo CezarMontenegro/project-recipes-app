@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ReceitasContext from '../Context/ReceitasContext';
@@ -9,6 +10,7 @@ import FoodIngredients from '../Components/FoodIngredients';
 function ComidaDetalhes() {
   const { dataIdCard, getCardById, getAPIname } = useContext(ReceitasContext);
   const { id } = useParams();
+
   useEffect(() => { getCardById(urlIdFood, id); }, []);
   useEffect(() => { getAPIname(urlNameBebidas, ''); }, []);
 
