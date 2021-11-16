@@ -47,8 +47,8 @@ function DrinksIngredients() {
   return (
     <section>
       { dataIdCard.drinks && dataIdCard.drinks
-        .map(({ idDrink: strCategory, strInstructions, strAlcoholic }) => (
-          <div key={ idDrink }>
+        .map(({ idDrink: idValue, strCategory, strInstructions, strAlcoholic }) => (
+          <div key={ idValue }>
             <h5 data-testid="recipe-category">
               {strCategory}
               <span>{strAlcoholic}</span>
