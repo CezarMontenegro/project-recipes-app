@@ -2,8 +2,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
-import getIngredients, { getNumberIngredients, getQuantIngredients }
-  from '../helper/functionsHelper';
+import getIngredients, { getNumberIngredients,
+  getQuantIngredients } from '../helper/functionsHelper';
 import UlIngredients from './UlIngredients';
 
 function DrinksIngredients() {
