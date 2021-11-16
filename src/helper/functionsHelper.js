@@ -4,6 +4,9 @@ const getIngredients = (array) => {
     .filter((item) => item.includes('strIngredient') && item[item.length - 1] !== '-');
 };
 
+export const getNumberIngredients = (array) => array
+  .map((_ingredient, index) => index + 1);
+
 export const getQuantIngredients = (array) => {
   const mapQuant = array.map((item) => item.join('-'));
   return mapQuant

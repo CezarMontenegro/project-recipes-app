@@ -1,24 +1,56 @@
-import React, { useContext } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
-import getIngredients, { getQuantIngredients } from '../helper/functionsHelper';
+import getIngredients, { getNumberIngredients, getQuantIngredients } from '../helper/functionsHelper';
 import UlIngredients from './UlIngredients';
 
 function DrinksIngredients() {
   const { dataIdCard, dataApi } = useContext(ReceitasContext);
+  const [isInprogress, setIsInProgress] = useState(false);
   const cardValues = Object.entries(dataIdCard.drinks[0]);
   const ingredientsValue = getIngredients(cardValues);
   const quantIngredients = getQuantIngredients(cardValues);
   const maxSugestions = 6;
   const sugestions = dataApi.meals && dataApi.meals.slice(0, maxSugestions);
+  const { idDrink } = dataIdCard.drinks[0];
+  const history = useHistory();
+  const { id } = useParams();
+
+  const handleInitRecip = () => {
+    if (!localStorage.inProgressRecipes) {
+      localStorage.setItem('inProgressRecipes',
+        JSON.stringify({ cocktails: { [idDrink]: getNumberIngredients(ingredientsValue) },
+          meals: { } }));
+      history.push(`/bebidas/${id}/in-progress`);
+    } else {
+      const recipsInStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      const { cocktails, meals } = recipsInStorage;
+      localStorage.setItem('inProgressRecipes',
+        JSON.stringify({ cocktails: { ...cocktails,
+          [idDrink]: getNumberIngredients(ingredientsValue) },
+        meals: { ...meals } }));
+      history.push(`/bebidas/${id}/in-progress`);
+    }
+  };
+
+  useEffect(() => {
+    if (!localStorage.inProgressRecipes) {
+      setIsInProgress(false);
+    } else {
+      const recipsInStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      setIsInProgress(idDrink in recipsInStorage.cocktails);
+    }
+  }, []);
 
   return (
     <section>
       { dataIdCard.drinks && dataIdCard.drinks
-        .map(({ idDrink, strCategory, strInstructions, strAlcoholic }) => (
-          <div key={ idDrink }>
+        .map(({ idDrink: id, strCategory, strInstructions, strAlcoholic }) => (
+          <div key={ id }>
             <h5 data-testid="recipe-category">
               {strCategory}
-              <h5>{strAlcoholic}</h5>
+              <span>{strAlcoholic}</span>
             </h5>
             <UlIngredients
               arrayIngredients={ ingredientsValue }
@@ -42,8 +74,10 @@ function DrinksIngredients() {
                 type="button"
                 data-testid="start-recipe-btn"
                 className="btn-startRecipe"
+                onClick={ handleInitRecip }
               >
-                Iniciar Receita
+                { !isInprogress
+                  ? 'Iniciar Receita' : 'Continuar Receita' }
               </button>
 
             </section>
