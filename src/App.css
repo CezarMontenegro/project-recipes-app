@@ -123,6 +123,40 @@
   margin-top: 10px;
 }
 
+.section-carousel {
+  width:100%;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.div-carousel {
+  width: 49%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1%;
+}
+
+.div-carousel img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.section-btn-recipe {
+  /* height: 30px; */
+  margin-top: 30px;
+}
+
+.btn-startRecipe {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
 @keyframes shake {
 
   0% {
