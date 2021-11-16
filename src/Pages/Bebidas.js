@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import Header from '../Components/Header';
 import ButtonSearch from '../Components/ButtonSearch';
