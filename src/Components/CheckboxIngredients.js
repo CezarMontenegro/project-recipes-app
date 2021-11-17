@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CheckBox from './Ckeckbox';
 
-
 const CheckboxIngredients = ({ arrayIngredients, arrayMeasure }) => (
   <section>
     <h5>
@@ -23,6 +22,7 @@ const CheckboxIngredients = ({ arrayIngredients, arrayMeasure }) => (
                 idValue={ index }
                 checkValue={ (index + 1) }
                 index={ index }
+              />
             </label>
           </div>
         );
