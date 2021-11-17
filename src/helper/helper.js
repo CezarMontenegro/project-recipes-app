@@ -20,5 +20,6 @@ export const randomFood = 'https://www.themealdb.com/api/json/v1/1/random.php';
 export const randomDrink = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
 export const urlIngredientsComidasNoFilter = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
+export const urlIngredientsBebidasNoFilter = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
 
 export default urlLetraBebidas;
