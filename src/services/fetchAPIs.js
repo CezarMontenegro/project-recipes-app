@@ -40,4 +40,10 @@ export const random = async (url) => {
   return results;
 };
 
+export const ingredientsCards = async (url) => {
+  const fetchIngredientsCards = await fetch(url);
+  const results = await fetchIngredientsCards.json();
+  return results;
+};
+
 export default ingredientAPI;

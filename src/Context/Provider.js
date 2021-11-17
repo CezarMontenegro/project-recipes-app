@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReceitasContext from './ReceitasContext';
 import ingredientAPI, { categoriesData, cardById, filterCategory, firstLetterAPI,
-  nameAPI, random } from '../services/fetchAPIs';
+  nameAPI, random, ingredientsCards } from '../services/fetchAPIs';
 
 function Provider({ children }) {
   const [radioButtonValue, setRadioButtonValue] = useState('');
@@ -15,6 +15,7 @@ function Provider({ children }) {
   const [ingredients, setIngredients] = useState([]);
   const [render, setRender] = useState(false);
   const [dataRandom, setRandom] = useState([]);
+  const [ingredientsList, setIngredientsList] = useState([]);
 
   const [visibleSearch, setVisibleSarch] = useState(false);
 
@@ -43,6 +44,10 @@ function Provider({ children }) {
     setRandom(await random(url));
   };
 
+  const getIngredientsList = async (url) => {
+    setIngredientsList(await ingredientsCards(url));
+  };
+
   const contextValue = {
     visibleSearch,
     setVisibleSarch,
@@ -69,6 +74,8 @@ function Provider({ children }) {
     setRender,
     getRandom,
     dataRandom,
+    getIngredientsList,
+    ingredientsList,
   };
 
   return (
