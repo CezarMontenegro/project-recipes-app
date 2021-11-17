@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -14,12 +13,12 @@ const copy = require('clipboard-copy');
 function ComidaDetalhes() {
   const { dataIdCard, getCardById, getAPIname } = useContext(ReceitasContext);
   const { id } = useParams();
-  const history = useHistory();
-  const { location: { pathname } } = history;
   const [isFavorite, setIsfavorite] = useState(false);
+  const [isCopyed, setIsCopyed] = useState(false);
 
   useEffect(() => { getCardById(urlIdFood, id); }, []);
   useEffect(() => { getAPIname(urlNameBebidas, ''); }, []);
+
   useEffect(() => {
     if (!localStorage.favoriteRecipes) {
       setIsfavorite(false);
@@ -33,42 +32,50 @@ function ComidaDetalhes() {
     }
   }, [dataIdCard]);
 
-  const handleShare = () => {
-    copy(pathname);
-    global.alert('Link Copiado!');
+  const handleShare = async () => {
+    await copy(window.location.href);
+    setIsCopyed(true);
+  };
+
+  const getLocalStorage = () => {
+    let getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const { idMeal, strArea, strCategory, strMeal, strMealThumb } = dataIdCard.meals[0];
+    getStorage = [...getStorage,
+      { id: idMeal,
+        type: 'comida',
+        area: strArea,
+        category: strCategory,
+        alcoholicOrNot: '',
+        name: strMeal,
+        image: strMealThumb }];
+    localStorage.setItem('favoriteRecipes',
+      JSON.stringify(getStorage));
+  };
+
+  const verifyStorage = () => {
+    const { idMeal, strArea, strCategory, strMeal, strMealThumb } = dataIdCard.meals[0];
+    if (!localStorage.favoriteRecipes) {
+      localStorage.setItem('favoriteRecipes',
+        JSON.stringify([{ id: idMeal,
+          type: 'comida',
+          area: strArea,
+          category: strCategory,
+          alcoholicOrNot: '',
+          name: strMeal,
+          image: strMealThumb }]));
+    } else { getLocalStorage(); }
   };
 
   const handleFavorite = () => {
     setIsfavorite(!isFavorite);
-    if (!localStorage.favoriteRecipes) {
-      localStorage.setItem('favoriteRecipes',
-        JSON.stringify([{
-          id: dataIdCard.meals && dataIdCard.meals[0].idMeal,
-          type: 'comida',
-          area: dataIdCard.meals && dataIdCard.meals[0].strArea,
-          category: dataIdCard.meals && dataIdCard.meals[0].strCategory,
-          alcoholicOrNot: '',
-          name: dataIdCard.meals && dataIdCard.meals[0].strMeal,
-          image: dataIdCard.meals && dataIdCard.meals[0].strMealThumb,
-        }]));
-    } else {
-      const getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      getStorage.concat({
-        id: dataIdCard.meals && dataIdCard.meals[0].idMeal,
-        type: 'comida',
-        area: dataIdCard.meals && dataIdCard.meals[0].strArea,
-        category: dataIdCard.meals && dataIdCard.meals[0].strCategory,
-        alcoholicOrNot: '',
-        name: dataIdCard.meals && dataIdCard.meals[0].strMeal,
-        image: dataIdCard.meals && dataIdCard.meals[0].strMealThumb,
-      });
-      localStorage.setItem('favoriteRecipes',
-        JSON.stringify(getStorage));
+    if (dataIdCard.meals) {
+      verifyStorage();
     }
   };
 
   return (
     <section>
+      <span>{isCopyed ? 'Link copiado!' : null}</span>
       {dataIdCard.meals && dataIdCard.meals
         .map(({ idMeal, strMeal, strMealThumb }) => (
           <div

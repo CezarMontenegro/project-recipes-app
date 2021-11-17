@@ -18,19 +18,7 @@ function FoodIngredients() {
   const history = useHistory();
 
   const handleInitRecip = () => {
-    if (!localStorage.inProgressRecipes) {
-      localStorage.setItem('inProgressRecipes',
-        JSON.stringify({ cocktails: {},
-          meals: { [idMeal]: [] } }));
-      history.push(`/comidas/${id}/in-progress`);
-    } else {
-      const recipsInStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      const { cocktails, meals } = recipsInStorage;
-      localStorage.setItem('inProgressRecipes',
-        JSON.stringify({ cocktails: { ...cocktails },
-          meals: { ...meals, [idMeal]: [] } }));
-      history.push(`/comidas/${id}/in-progress`);
-    }
+    history.push(`/comidas/${id}/in-progress`);
   };
 
   useEffect(() => {
