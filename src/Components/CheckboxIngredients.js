@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CheckBox from './Ckeckbox';
+
 
 const CheckboxIngredients = ({ arrayIngredients, arrayMeasure }) => (
   <section>
@@ -17,11 +19,10 @@ const CheckboxIngredients = ({ arrayIngredients, arrayMeasure }) => (
             >
               { `${ingredient} - ${arrayMeasure[index].replace('strMeasure', '')
                 .replace('-', '')}`}
-              <input
-                type="checkbox"
-                id={ index }
-                value={ (index + 1) }
-              />
+              <CheckBox
+                idValue={ index }
+                checkValue={ (index + 1) }
+                index={ index }
             </label>
           </div>
         );

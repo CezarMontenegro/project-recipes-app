@@ -17,20 +17,7 @@ function DrinksIngredients() {
   const { id } = useParams();
 
   const handleInitRecip = () => {
-    if (!localStorage.inProgressRecipes) {
-      localStorage.setItem('inProgressRecipes',
-        JSON.stringify({ cocktails: { [idDrink]: [] },
-          meals: { } }));
-      history.push(`/bebidas/${id}/in-progress`);
-    } else {
-      const recipsInStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      const { cocktails, meals } = recipsInStorage;
-      localStorage.setItem('inProgressRecipes',
-        JSON.stringify({ cocktails: { ...cocktails,
-          [idDrink]: [] },
-        meals: { ...meals } }));
-      history.push(`/bebidas/${id}/in-progress`);
-    }
+    history.push(`/bebidas/${id}/in-progress`);
   };
 
   useEffect(() => {

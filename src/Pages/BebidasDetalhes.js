@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -14,12 +13,12 @@ const copy = require('clipboard-copy');
 function BebidasDetalhes() {
   const { dataIdCard, getCardById, getAPIname } = useContext(ReceitasContext);
   const { id } = useParams();
-  const history = useHistory();
-  const { location: { pathname } } = history;
   const [isFavorite, setIsfavorite] = useState(false);
+  const [isCopyed, setIsCopyed] = useState(false);
 
   useEffect(() => { getCardById(urlIdDrink, id); }, []);
   useEffect(() => { getAPIname(urlNameComidas, ''); }, []);
+
   useEffect(() => {
     if (!localStorage.favoriteRecipes) {
       setIsfavorite(false);
@@ -33,42 +32,52 @@ function BebidasDetalhes() {
     }
   }, [dataIdCard]);
 
-  const handleShare = () => {
-    copy(pathname);
-    global.alert('Link Copiado!');
+  const getLocalStorage = () => {
+    let getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const { idDrink, strCategory, strDrink,
+      strAlcoholic, strDrinkThumb } = dataIdCard.drinks[0];
+    getStorage = [...getStorage,
+      { id: idDrink,
+        type: 'bebida',
+        area: '',
+        category: strCategory,
+        alcoholicOrNot: strAlcoholic,
+        name: strDrink,
+        image: strDrinkThumb }];
+    localStorage.setItem('favoriteRecipes',
+      JSON.stringify(getStorage));
+  };
+
+  const verifyStorage = () => {
+    const { idDrink, strCategory, strAlcoholic,
+      strDrink, strDrinkThumb } = dataIdCard.drinks[0];
+    if (!localStorage.favoriteRecipes) {
+      localStorage.setItem('favoriteRecipes',
+        JSON.stringify([{ id: idDrink,
+          type: 'bebida',
+          area: '',
+          category: strCategory,
+          alcoholicOrNot: strAlcoholic,
+          name: strDrink,
+          image: strDrinkThumb }]));
+    } else { getLocalStorage(); }
+  };
+
+  const handleShare = async () => {
+    await copy(window.location.href);
+    setIsCopyed(true);
   };
 
   const handleFavorite = () => {
     setIsfavorite(!isFavorite);
-    if (!localStorage.favoriteRecipes) {
-      localStorage.setItem('favoriteRecipes',
-        JSON.stringify([{
-          id: dataIdCard.drinks && dataIdCard.drinks[0].idDrink,
-          type: 'bebida',
-          area: '',
-          category: dataIdCard.drinks && dataIdCard.drinks[0].strCategory,
-          alcoholicOrNot: dataIdCard.drinks && dataIdCard.drinks[0].strAlcoholic,
-          name: dataIdCard.drinks && dataIdCard.drinks[0].strDrink,
-          image: dataIdCard.drinks && dataIdCard.drinks[0].strDrinkThumb,
-        }]));
-    } else {
-      const getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      getStorage.concat({
-        id: dataIdCard.drinks && dataIdCard.drinks[0].idDrink,
-        type: 'bebida',
-        area: '',
-        category: dataIdCard.drinks && dataIdCard.drinks[0].strCategory,
-        alcoholicOrNot: dataIdCard.drinks && dataIdCard.drinks[0].strAlcoholic,
-        name: dataIdCard.drinks && dataIdCard.drinks[0].strDrink,
-        image: dataIdCard.drinks && dataIdCard.drinks[0].strDrinkThumb,
-      });
-      localStorage.setItem('favoriteRecipes',
-        JSON.stringify(getStorage));
+    if (dataIdCard.drinks) {
+      verifyStorage();
     }
   };
 
   return (
     <section>
+      <span>{isCopyed ? 'Link copiado!' : null}</span>
       {dataIdCard.drinks && dataIdCard.drinks
         .map(({ strDrink, idDrink, strDrinkThumb }) => (
           <div
