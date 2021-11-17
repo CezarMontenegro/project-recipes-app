@@ -2,8 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
-import getIngredients, { getNumberIngredients,
-  getQuantIngredients } from '../helper/functionsHelper';
+import getIngredients, { getQuantIngredients } from '../helper/functionsHelper';
 import UlIngredients from './UlIngredients';
 
 function FoodIngredients() {
@@ -22,14 +21,14 @@ function FoodIngredients() {
     if (!localStorage.inProgressRecipes) {
       localStorage.setItem('inProgressRecipes',
         JSON.stringify({ cocktails: {},
-          meals: { [idMeal]: getNumberIngredients(ingredientsValue) } }));
+          meals: { [idMeal]: [] } }));
       history.push(`/comidas/${id}/in-progress`);
     } else {
       const recipsInStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
       const { cocktails, meals } = recipsInStorage;
       localStorage.setItem('inProgressRecipes',
         JSON.stringify({ cocktails: { ...cocktails },
-          meals: { ...meals, [idMeal]: getNumberIngredients(ingredientsValue) } }));
+          meals: { ...meals, [idMeal]: [] } }));
       history.push(`/comidas/${id}/in-progress`);
     }
   };

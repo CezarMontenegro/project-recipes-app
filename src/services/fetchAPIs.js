@@ -34,4 +34,10 @@ export const cardById = async (url, param) => {
   return results;
 };
 
+export const random = async (url) => {
+  const fetchRandom = await fetch(url);
+  const results = await fetchRandom.json();
+  return results;
+};
+
 export default ingredientAPI;

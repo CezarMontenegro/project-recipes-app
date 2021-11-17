@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CheckboxIngredients = ({ arrayIngredients }) => (
+const CheckboxIngredients = ({ arrayIngredients, arrayMeasure }) => (
   <section>
     <h5>
       Ingredientes
@@ -15,10 +15,12 @@ const CheckboxIngredients = ({ arrayIngredients }) => (
               key={ index }
               data-testid={ `${index}-ingredient-step` }
             >
-              { ingredient}
+              { `${ingredient} - ${arrayMeasure[index].replace('strMeasure', '')
+                .replace('-', '')}`}
               <input
                 type="checkbox"
                 id={ index }
+                value={ (index + 1) }
               />
             </label>
           </div>
@@ -26,11 +28,11 @@ const CheckboxIngredients = ({ arrayIngredients }) => (
       })}
     </h5>
   </section>
-
 );
 
 CheckboxIngredients.propTypes = {
   arrayIngredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+  arrayMeasure: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default CheckboxIngredients;
