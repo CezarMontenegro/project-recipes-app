@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -10,14 +10,18 @@ const CheckboxIngredients = ({ arrayIngredients, arrayMeasure }) => {
   const handleClick = ({ target }) => {
     const { checked, value } = target;
     const getStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const { cocktails, meals } = getStorage;
     if (pathname === `/comidas/${id}/in-progress`) {
-      getStorage.meals[id].concat(value);
-      console.log(getStorage.meals[id]);
-      /* if (checked) {
-        getStorage.meals: {
-
-        }
-      } */
+      if (checked) {
+        localStorage.setItem('inProgressRecipes',
+          JSON.stringify({ cocktails: { ...cocktails },
+            meals: { ...meals, [id]: value } }));
+      }
+    } else {
+      localStorage.setItem('inProgressRecipes',
+        JSON.stringify({ cocktails: { ...cocktails,
+          [id]: value },
+        meals: { ...meals } }));
     }
   };
 
