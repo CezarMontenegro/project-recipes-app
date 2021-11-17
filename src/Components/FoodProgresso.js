@@ -31,7 +31,6 @@ function FoodProgresso() {
               >
                 Finalizar Receita
               </button>
-
             </section>
           </div>
         ))}
