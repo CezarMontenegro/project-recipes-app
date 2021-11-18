@@ -15,6 +15,7 @@ function ComidaDetalhes() {
   const { id } = useParams();
   const [isFavorite, setIsfavorite] = useState(false);
   const [isCopyed, setIsCopyed] = useState(false);
+  let getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
   useEffect(() => { getCardById(urlIdFood, id); }, []);
   useEffect(() => { getAPIname(urlNameBebidas, ''); }, []);
@@ -22,23 +23,19 @@ function ComidaDetalhes() {
   useEffect(() => {
     if (!localStorage.favoriteRecipes) {
       setIsfavorite(false);
-    } else {
-      const getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      if (dataIdCard.meals) {
-        const verifyIfExists = getStorage.some((obj) => obj.id
+    } else if (dataIdCard.meals) {
+      const verifyIfExists = getStorage.some((obj) => obj.id
       === dataIdCard.meals[0].idMeal);
-        setIsfavorite(verifyIfExists);
-      }
+      setIsfavorite(verifyIfExists);
     }
   }, [dataIdCard]);
 
-  const handleShare = async () => {
-    await copy(window.location.href);
+  const handleShare = () => {
+    copy(window.location.href);
     setIsCopyed(true);
   };
 
   const getLocalStorage = () => {
-    let getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
     const { idMeal, strArea, strCategory, strMeal, strMealThumb } = dataIdCard.meals[0];
     getStorage = [...getStorage,
       { id: idMeal,

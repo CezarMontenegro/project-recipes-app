@@ -15,6 +15,7 @@ function BebidasDetalhes() {
   const { id } = useParams();
   const [isFavorite, setIsfavorite] = useState(false);
   const [isCopyed, setIsCopyed] = useState(false);
+  let getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
   useEffect(() => { getCardById(urlIdDrink, id); }, []);
   useEffect(() => { getAPIname(urlNameComidas, ''); }, []);
@@ -22,18 +23,14 @@ function BebidasDetalhes() {
   useEffect(() => {
     if (!localStorage.favoriteRecipes) {
       setIsfavorite(false);
-    } else {
-      const getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      if (dataIdCard.drinks) {
-        const verifyIfExists = getStorage.some((obj) => obj.id
+    } else if (dataIdCard.drinks) {
+      const verifyIfExists = getStorage.some((obj) => obj.id
       === dataIdCard.drinks[0].idDrink);
-        setIsfavorite(verifyIfExists);
-      }
+      setIsfavorite(verifyIfExists);
     }
   }, [dataIdCard]);
 
   const getLocalStorage = () => {
-    let getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
     const { idDrink, strCategory, strDrink,
       strAlcoholic, strDrinkThumb } = dataIdCard.drinks[0];
     getStorage = [...getStorage,
@@ -63,8 +60,8 @@ function BebidasDetalhes() {
     } else { getLocalStorage(); }
   };
 
-  const handleShare = async () => {
-    await copy(window.location.href);
+  const handleShare = () => {
+    copy(window.location.href);
     setIsCopyed(true);
   };
 

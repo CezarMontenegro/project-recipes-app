@@ -15,8 +15,6 @@ const CheckBox = ({ idValue, checkValue }) => {
       const verify = getStorage.meals[id]
         ? getStorage.meals[id].some((item) => item === checkValue)
         : false;
-      console.log(verify);
-      console.log(getStorage);
       setIsChecked(verify === true ? 'checked' : false);
     } else { setIsChecked(false); }
   };
