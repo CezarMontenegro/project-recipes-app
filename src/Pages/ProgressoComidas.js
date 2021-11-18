@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReceitasContext from '../Context/ReceitasContext';
@@ -7,10 +8,14 @@ import { urlIdFood, urlNameBebidas } from '../helper/helper';
 import FoodProgresso from '../Components/FoodProgresso';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
+const copy = require('clipboard-copy');
+
 function ProgressoComidas() {
   const { dataIdCard, getCardById, getAPIname } = useContext(ReceitasContext);
   const { id } = useParams();
   const [isFavorite, setIsfavorite] = useState(false);
+  const [isCopyed, setIsCopyed] = useState(false);
+  let getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
   useEffect(() => { getCardById(urlIdFood, id); }, []);
   useEffect(() => { getAPIname(urlNameBebidas, ''); }, []);
@@ -18,47 +23,59 @@ function ProgressoComidas() {
   useEffect(() => {
     if (!localStorage.favoriteRecipes) {
       setIsfavorite(false);
-    } else {
-      const getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      if (dataIdCard.meals) {
-        const verifyIfExists = getStorage.some((obj) => obj.id
+    } else if (dataIdCard.meals) {
+      const verifyIfExists = getStorage.some((obj) => obj.id
       === dataIdCard.meals[0].idMeal);
-        setIsfavorite(verifyIfExists);
-      }
+      setIsfavorite(verifyIfExists);
     }
   }, [dataIdCard]);
+
+  const createStorage = () => {
+    const { idMeal, strArea, strCategory, strMeal, strMealThumb } = dataIdCard.meals[0];
+    localStorage.setItem('favoriteRecipes',
+      JSON.stringify([{
+        id: idMeal,
+        type: 'comida',
+        area: strArea,
+        category: strCategory,
+        alcoholicOrNot: '',
+        name: strMeal,
+        image: strMealThumb,
+      }]));
+  };
+
+  const receiveLocalStorage = () => {
+    const { idMeal, strArea, strCategory, strMeal, strMealThumb } = dataIdCard.meals[0];
+    getStorage = [...getStorage,
+      { id: idMeal,
+        type: 'comida',
+        area: strArea,
+        category: strCategory,
+        alcoholicOrNot: '',
+        name: strMeal,
+        image: strMealThumb }];
+    localStorage.setItem('favoriteRecipes',
+      JSON.stringify(getStorage));
+  };
 
   const handleFavorite = () => {
     setIsfavorite(!isFavorite);
     if (!localStorage.favoriteRecipes) {
-      localStorage.setItem('favoriteRecipes',
-        JSON.stringify([{
-          id: dataIdCard.meals && dataIdCard.meals[0].idMeal,
-          type: 'comida',
-          area: dataIdCard.meals && dataIdCard.meals[0].strArea,
-          category: dataIdCard.meals && dataIdCard.meals[0].strCategory,
-          alcoholicOrNot: '',
-          name: dataIdCard.meals && dataIdCard.meals[0].strMeal,
-          image: dataIdCard.meals && dataIdCard.meals[0].strMealThumb,
-        }]));
+      createStorage();
     } else {
-      const getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      getStorage.concat({
-        id: dataIdCard.meals && dataIdCard.meals[0].idMeal,
-        type: 'comida',
-        area: dataIdCard.meals && dataIdCard.meals[0].strArea,
-        category: dataIdCard.meals && dataIdCard.meals[0].strCategory,
-        alcoholicOrNot: '',
-        name: dataIdCard.meals && dataIdCard.meals[0].strMeal,
-        image: dataIdCard.meals && dataIdCard.meals[0].strMealThumb,
-      });
-      localStorage.setItem('favoriteRecipes',
-        JSON.stringify(getStorage));
+      receiveLocalStorage();
     }
+  };
+
+  const handleShare = () => {
+    const message = window.location.href.replace('/in-progress', '');
+    copy(message);
+    setIsCopyed(true);
   };
 
   return (
     <section>
+      <span>{isCopyed ? 'Link copiado!' : null}</span>
       {dataIdCard.meals && dataIdCard.meals
         .map(({ idMeal, strMeal, strMealThumb }) => (
           <div
@@ -79,6 +96,7 @@ function ProgressoComidas() {
                   data-testid="share-btn"
                   src={ shareIcon }
                   alt="Ícone de compartilhamento"
+                  onClick={ handleShare }
                 />
                 <input
                   type="image"
