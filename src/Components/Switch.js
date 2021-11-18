@@ -16,6 +16,7 @@ import ExplorarBebidasIngredientes from '../Pages/ExplorarBebidasIngredientes';
 import ExplorarArea from '../Pages/ExplorarArea';
 import ProgressoComidas from '../Pages/ProgressoComidas';
 import ProgressoBebidas from '../Pages/ProgressoBebidas';
+import NotFound from './NotFound';
 
 const Switchs = () => (
   <Switch>
@@ -27,6 +28,7 @@ const Switchs = () => (
       path="/explorar/bebidas/ingredientes"
       component={ ExplorarBebidasIngredientes }
     />
+    <Route path="/explorar/bebidas/area" component={ NotFound } />
     <Route path="/explorar/comidas/area" component={ ExplorarArea } />
     <Route path="/comidas/:id/in-progress" component={ ProgressoComidas } />
     <Route path="/bebidas/:id/in-progress" component={ ProgressoBebidas } />
