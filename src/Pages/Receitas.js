@@ -11,13 +11,23 @@ import { urlCategoriesFood,
 
 function Receitas() {
   const { getAPIingredient, getApiCategories,
-    dataCategories, getApiFilter, getAPIname } = useContext(ReceitasContext);
+    dataCategories, getApiFilter,
+    getAPIname, dataApi } = useContext(ReceitasContext);
   const maxCategories = 5;
   const [isFilter, setIsFilter] = useState(false);
   const [category, setCategory] = useState('');
 
-  useEffect(() => { getAPIingredient(urlIngredientsComidas, ''); }, []);
+  useEffect(() => {
+    if (!dataApi.meals) {
+      getAPIingredient(urlIngredientsComidas, '');
+    }
+  }, []);
   useEffect(() => { getApiCategories(urlCategoriesFood); }, []);
+  /*  useEffect(() => {
+    if (dataFilterCategory.meals && dataFilterCategory.meals.length > 0) {
+      setIsFilter(true);
+    }
+  }, []); */
 
   const handleClickCategory = (param) => {
     getApiFilter(urlFilterFood, param);

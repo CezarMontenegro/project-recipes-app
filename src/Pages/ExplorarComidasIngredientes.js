@@ -1,19 +1,21 @@
 import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import ReceitasContext from '../Context/ReceitasContext';
-import { urlIngredientsComidasNoFilter, urlNameComidas } from '../helper/helper';
+import { urlIngredientsComidasNoFilter, urlIngredientsComidas } from '../helper/helper';
 
 function ExplorarComidasIngredientes() {
   const { getIngredientsList,
-    ingredientsList, getAPIingredient, dataApi } = useContext(ReceitasContext);
+    ingredientsList, getAPIingredient } = useContext(ReceitasContext);
   const NUMBER = 12;
+  const history = useHistory();
 
   useEffect(() => { getIngredientsList(urlIngredientsComidasNoFilter); }, []);
 
   const handleClick = async (param) => {
-    await getAPIingredient(urlNameComidas, param);
-    console.log(dataApi);
+    await getAPIingredient(urlIngredientsComidas, param);
+    history.push('/comidas');
   };
 
   return (
