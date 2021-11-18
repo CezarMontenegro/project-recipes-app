@@ -8,7 +8,7 @@ function FoodProgresso() {
   const cardValues = Object.entries(dataIdCard.meals[0]);
   const ingredientsValue = getIngredients(cardValues);
   const quantIngredients = getQuantIngredients(cardValues);
-
+  const { isFinishedRecip } = useContext(ReceitasContext);
   return (
     <section>
       { dataIdCard.meals && dataIdCard.meals
@@ -28,6 +28,7 @@ function FoodProgresso() {
                 type="button"
                 data-testid="finish-recipe-btn"
                 className="btn-startRecipe"
+                disabled={ isFinishedRecip }
               >
                 Finalizar Receita
               </button>

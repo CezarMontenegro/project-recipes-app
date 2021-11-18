@@ -8,6 +8,7 @@ function DrinksProgresso() {
   const cardValues = Object.entries(dataIdCard.drinks[0]);
   const ingredientsValue = getIngredients(cardValues);
   const quantIngredients = getQuantIngredients(cardValues);
+  const { isFinishedRecip } = useContext(ReceitasContext);
 
   return (
     <section>
@@ -29,6 +30,7 @@ function DrinksProgresso() {
                 type="button"
                 data-testid="finish-recipe-btn"
                 className="btn-startRecipe"
+                disabled={ isFinishedRecip }
               >
                 Finalizar Receita
               </button>
