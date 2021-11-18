@@ -11,13 +11,21 @@ import CardDrinkFilter from '../Components/CardDrinkFilter';
 
 function Bebidas() {
   const { getAPIingredient, getApiCategories,
-    dataCategories, getApiFilter, getAPIname } = useContext(ReceitasContext);
+    dataCategories, getApiFilter, getAPIname,
+    dataFilterCategory, dataApi } = useContext(ReceitasContext);
   const maxCategories = 5;
   const [isFilter, setIsFilter] = useState(false);
   const [category, setCategory] = useState('');
 
-  useEffect(() => { getAPIingredient(urlIngredientsBebidasInital, ''); }, []);
+  useEffect(() => {
+    if (!dataApi.drinks) { getAPIingredient(urlIngredientsBebidasInital, ''); }
+  }, []);
   useEffect(() => { getApiCategories(urlCategoriesDrinks); }, []);
+  useEffect(() => {
+    if (dataFilterCategory.drinks && dataFilterCategory.drinks.length > 0) {
+      setIsFilter(true);
+    }
+  }, []);
 
   const handleClickCategory = (param) => {
     getApiFilter(urlFilterDrink, param);

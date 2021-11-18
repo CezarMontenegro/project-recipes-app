@@ -1,15 +1,22 @@
 import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import ReceitasContext from '../Context/ReceitasContext';
-import { urlIngredientsBebidasNoFilter } from '../helper/helper';
+import { urlIngredientsBebidasNoFilter, urlIngredientsBebidas } from '../helper/helper';
 
 function ExplorarBebidasIngredientes() {
   const { getIngredientsList,
-    ingredientsList } = useContext(ReceitasContext);
+    ingredientsList, getAPIingredient } = useContext(ReceitasContext);
   const NUMBER = 12;
+  const history = useHistory();
 
   useEffect(() => { getIngredientsList(urlIngredientsBebidasNoFilter); }, []);
+
+  const handleClick = async (param) => {
+    await getAPIingredient(urlIngredientsBebidas, param);
+    history.push('/bebidas');
+  };
 
   return (
     <section>
@@ -28,7 +35,7 @@ function ExplorarBebidasIngredientes() {
                 src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
                 alt={ strIngredient1 }
                 data-testid={ `${index}-card-img` }
-              /*               onClick={ () => handleClick(strIngredient1) } */
+                onClick={ () => handleClick(strIngredient1) }
               />
               <div className="card-body">
                 <h5
