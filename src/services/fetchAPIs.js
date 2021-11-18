@@ -46,4 +46,10 @@ export const ingredientsCards = async (url) => {
   return results;
 };
 
+export const recipesByArea = async (url) => {
+  const fetchRecipesByArea = await fetch(url);
+  const results = await fetchRecipesByArea.json();
+  return results;
+};
+
 export default ingredientAPI;

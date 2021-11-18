@@ -21,5 +21,6 @@ export const randomDrink = 'https://www.thecocktaildb.com/api/json/v1/1/random.p
 
 export const urlIngredientsComidasNoFilter = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
 export const urlIngredientsBebidasNoFilter = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+export const urlExploreByArea = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
 
 export default urlLetraBebidas;
