@@ -7,7 +7,7 @@ const CardArea = () => {
   const NUMBER = 12;
   const history = useHistory();
 
-  const handleClick = (param) => {
+  const redirect = (param) => {
     history.push(`/comidas/${param}`);
   };
 
@@ -26,7 +26,7 @@ const CardArea = () => {
               src={ strMealThumb }
               alt={ strMeal }
               data-testid={ `${index}-card-img` }
-              onClick={ () => handleClick(idMeal) }
+              onClick={ () => redirect(idMeal) }
             />
             <div className="card-body">
               <h5
