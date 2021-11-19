@@ -9,6 +9,7 @@ function CardDrinkFavorite({ name, image, alcoholicOrNot, index, id }) {
   const [isFavorited, setIsFavorited] = useState();
   const { setFavoriteList } = useContext(ReceitasContext);
 
+  // Referência
   // https://pt.stackoverflow.com/questions/229222/como-excluir-um-produto-com-id-no-sessionstorage
   function removeItem(idCard) {
     const obj = JSON.parse(localStorage.getItem('favoriteRecipes')) || {}; // localStorage Nome
