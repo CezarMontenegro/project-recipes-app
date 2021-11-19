@@ -1,18 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import FoodIngredients from '../Components/FoodIngredients';
+import { urlIdFood, urlNameBebidas } from '../helper/helper';
 
 const copy = require('clipboard-copy');
 
 function ComidaDetalhes() {
-  const { dataIdCard } = useContext(ReceitasContext);
+  const { dataIdCard, getAPIname, getCardById } = useContext(ReceitasContext);
   const [isFavorite, setIsfavorite] = useState(false);
+  const { id } = useParams();
   const [isCopyed, setIsCopyed] = useState(false);
   let getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
+  useEffect(() => { getCardById(urlIdFood, id); }, []);
+  useEffect(() => { getAPIname(urlNameBebidas, ''); }, []);
 
   useEffect(() => {
     if (!localStorage.favoriteRecipes) {

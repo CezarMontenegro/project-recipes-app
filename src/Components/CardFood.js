@@ -1,16 +1,13 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
-import { urlIdFood } from '../helper/helper';
 
 const CardFood = () => {
   const { dataApi } = useContext(ReceitasContext);
   const NUMBER = 12;
   const history = useHistory();
-  const { getCardById } = useContext(ReceitasContext);
 
   const handleClick = (param) => {
-    getCardById(urlIdFood, param);
     history.push(`/comidas/${param}`);
   };
 
