@@ -21,7 +21,6 @@ const CheckboxIngredients = ({ arrayIngredients, arrayMeasure }) => (
               <CheckBox
                 idValue={ index }
                 checkValue={ (index + 1) }
-                index={ index }
               />
             </label>
           </div>

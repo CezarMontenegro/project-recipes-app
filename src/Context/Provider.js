@@ -16,6 +16,7 @@ function Provider({ children }) {
   const [render, setRender] = useState(false);
   const [dataRandom, setRandom] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([]);
+  const [isFinishedRecip, setIsFinishedRecip] = useState(true);
 
   const [visibleSearch, setVisibleSarch] = useState(false);
 
@@ -76,6 +77,8 @@ function Provider({ children }) {
     dataRandom,
     getIngredientsList,
     ingredientsList,
+    isFinishedRecip,
+    setIsFinishedRecip,
   };
 
   return (
