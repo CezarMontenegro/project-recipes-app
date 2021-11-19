@@ -19,6 +19,7 @@ function Provider({ children }) {
   const [ingredientsList, setIngredientsList] = useState([]);
   const [ingredientsByArea, setIngredientsByArea] = useState([]);
   const [meals, setMeals] = useState([]);
+  const [isFinishedRecip, setIsFinishedRecip] = useState(true);
 
   const [visibleSearch, setVisibleSarch] = useState(false);
 
@@ -93,6 +94,8 @@ function Provider({ children }) {
     getFilterByArea,
     meals,
     setMeals,
+    isFinishedRecip,
+    setIsFinishedRecip,
   };
 
   return (

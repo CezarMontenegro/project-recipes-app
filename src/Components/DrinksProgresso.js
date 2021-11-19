@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
 import getIngredients, { getQuantIngredients } from '../helper/functionsHelper';
 import CheckboxIngredients from './CheckboxIngredients';
@@ -8,6 +9,8 @@ function DrinksProgresso() {
   const cardValues = Object.entries(dataIdCard.drinks[0]);
   const ingredientsValue = getIngredients(cardValues);
   const quantIngredients = getQuantIngredients(cardValues);
+  const { isFinishedRecip } = useContext(ReceitasContext);
+  const history = useHistory();
 
   return (
     <section>
@@ -29,6 +32,8 @@ function DrinksProgresso() {
                 type="button"
                 data-testid="finish-recipe-btn"
                 className="btn-startRecipe"
+                disabled={ isFinishedRecip }
+                onClick={ () => history.push('/receitas-feitas') }
               >
                 Finalizar Receita
               </button>
