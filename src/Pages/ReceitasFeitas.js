@@ -64,7 +64,7 @@ function ReceitasFeitas() {
         </button>
       </section>
       <div>
-        {recips.map((recip, index) => {
+        {recips && recips.map((recip, index) => {
           const { image, category, name, doneDate, tags,
             area, type, alcoholicOrNot, id } = recip;
           return (
