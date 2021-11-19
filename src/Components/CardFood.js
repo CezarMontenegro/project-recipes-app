@@ -7,9 +7,7 @@ const CardFood = () => {
   const NUMBER = 12;
   const history = useHistory();
 
-  const handleClick = (param) => {
-    history.push(`/comidas/${param}`);
-  };
+  const handleClick = (param) => history.push(`/comidas/${param}`);
 
   return (
     <section className="display-card">

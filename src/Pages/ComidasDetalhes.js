@@ -17,8 +17,6 @@ function ComidaDetalhes() {
   const [isCopyed, setIsCopyed] = useState(false);
   let getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
-  // realizado reversão da refatoração
-
   useEffect(() => { getCardById(urlIdFood, id); }, []);
   useEffect(() => { getAPIname(urlNameBebidas, ''); }, []);
 

@@ -22,6 +22,7 @@ function Receitas() {
       getAPIingredient(urlIngredientsComidas, '');
     }
   }, []);
+
   useEffect(() => { getApiCategories(urlCategoriesFood); }, []);
 
   const handleClickCategory = (param) => {

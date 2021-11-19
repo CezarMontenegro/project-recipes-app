@@ -17,9 +17,7 @@ function FoodIngredients() {
   const { id } = useParams();
   const history = useHistory();
 
-  const handleInitRecip = () => {
-    history.push(`/comidas/${id}/in-progress`);
-  };
+  const handleInitRecip = () => history.push(`/comidas/${id}/in-progress`);
 
   useEffect(() => {
     if (!localStorage.inProgressRecipes) {
