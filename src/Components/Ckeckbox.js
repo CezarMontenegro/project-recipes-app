@@ -35,20 +35,23 @@ const CheckBox = ({ idValue, checkValue }) => {
     const foodObj = getRecipsInStorage[key];
     if (getRecipsInStorage && foodObj[id].length
       === arrayIngredients.length) setIsFinishedRecip(false);
-    if (getRecipsInStorage) console.log(foodObj[id].length);
   };
 
   useEffect(() => {
-    if (pathname === `/comidas/${id}/in-progress` && localStorage
-      .inProgressRecipes && localStorage.inProgressRecipes.meals) {
+    if (pathname === `/comidas/${id}/in-progress`) {
+      const getRecipsInStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
       const foodValues = Object.entries(dataIdCard.meals[0]);
       const ingredientsValue = getIngredients(foodValues);
-      verifiFoodChecked('meals', ingredientsValue);
-    } else if (pathname !== `/comidas/${id}/in-progress`
-    && localStorage.inProgressRecipes) {
+      const foodObj = getRecipsInStorage && getRecipsInStorage.meals;
+      const quantRecipChecked = foodObj && foodObj[id] ? foodObj[id].length : 0;
+      if (ingredientsValue.length === quantRecipChecked) setIsFinishedRecip(false);
+    } else {
+      const getRecipsInStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
       const foodValues = Object.entries(dataIdCard.drinks[0]);
       const ingredientsValue = getIngredients(foodValues);
-      verifiFoodChecked('cocktails', ingredientsValue);
+      const foodObj = getRecipsInStorage && getRecipsInStorage.cocktails;
+      const quantRecipChecked = foodObj && foodObj[id] ? foodObj[id].length : 0;
+      if (ingredientsValue.length === quantRecipChecked) setIsFinishedRecip(false);
     }
   }, []);
 
