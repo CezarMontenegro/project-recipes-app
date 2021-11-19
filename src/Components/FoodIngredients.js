@@ -3,11 +3,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router';
 import ReceitasContext from '../Context/ReceitasContext';
 import getIngredients, { getQuantIngredients } from '../helper/functionsHelper';
-import { urlNameBebidas } from '../helper/helper';
 import UlIngredients from './UlIngredients';
 
 function FoodIngredients() {
-  const { dataIdCard, dataApi, getAPIname } = useContext(ReceitasContext);
+  const { dataIdCard, dataApi } = useContext(ReceitasContext);
   const [isInprogress, setIsInProgress] = useState(false);
   const cardValues = Object.entries(dataIdCard.meals[0]);
   const ingredientsValue = getIngredients(cardValues);
@@ -30,8 +29,6 @@ function FoodIngredients() {
       setIsInProgress(idMeal in recipsInStorage.meals);
     }
   }, []);
-
-  useEffect(() => { getAPIname(urlNameBebidas, ''); }, []);
 
   return (
     <section>
