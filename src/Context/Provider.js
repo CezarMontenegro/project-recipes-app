@@ -20,6 +20,7 @@ function Provider({ children }) {
   const [ingredientsByArea, setIngredientsByArea] = useState([]);
   const [meals, setMeals] = useState([]);
   const [isFinishedRecip, setIsFinishedRecip] = useState(true);
+  const [favoriteList, setFavoriteList] = useState([]);
 
   const [visibleSearch, setVisibleSarch] = useState(false);
 
@@ -96,6 +97,8 @@ function Provider({ children }) {
     setMeals,
     isFinishedRecip,
     setIsFinishedRecip,
+    favoriteList,
+    setFavoriteList,
   };
 
   return (

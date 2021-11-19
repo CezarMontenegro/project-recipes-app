@@ -11,6 +11,7 @@ function FoodProgresso() {
   const quantIngredients = getQuantIngredients(cardValues);
   const { isFinishedRecip } = useContext(ReceitasContext);
   const history = useHistory();
+
   return (
     <section>
       { dataIdCard.meals && dataIdCard.meals
