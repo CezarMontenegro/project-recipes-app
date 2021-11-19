@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 import ReceitasContext from '../Context/ReceitasContext';
 import getIngredients, { getQuantIngredients } from '../helper/functionsHelper';
 import UlIngredients from './UlIngredients';

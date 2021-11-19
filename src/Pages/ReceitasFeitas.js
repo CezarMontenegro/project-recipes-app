@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import Header from '../Components/Header';
 import shareIcon from '../images/shareIcon.svg';
 
@@ -64,7 +64,7 @@ function ReceitasFeitas() {
         </button>
       </section>
       <div>
-        {recips.map((recip, index) => {
+        {recips && recips.map((recip, index) => {
           const { image, category, name, doneDate, tags,
             area, type, alcoholicOrNot, id } = recip;
           return (

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import ReceitasContext from '../Context/ReceitasContext';
 
 const CardFoodFilter = () => {
