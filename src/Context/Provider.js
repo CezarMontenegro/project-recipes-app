@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReceitasContext from './ReceitasContext';
 import ingredientAPI, { categoriesData, cardById, filterCategory, firstLetterAPI,
-  nameAPI, random, ingredientsCards } from '../services/fetchAPIs';
+  nameAPI, random,
+  ingredientsCards, recipesByArea, filterByArea } from '../services/fetchAPIs';
 
 function Provider({ children }) {
   const [radioButtonValue, setRadioButtonValue] = useState('');
@@ -16,7 +17,10 @@ function Provider({ children }) {
   const [render, setRender] = useState(false);
   const [dataRandom, setRandom] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([]);
+  const [ingredientsByArea, setIngredientsByArea] = useState([]);
+  const [meals, setMeals] = useState([]);
   const [isFinishedRecip, setIsFinishedRecip] = useState(true);
+  const [favoriteList, setFavoriteList] = useState([]);
 
   const [visibleSearch, setVisibleSarch] = useState(false);
 
@@ -49,6 +53,14 @@ function Provider({ children }) {
     setIngredientsList(await ingredientsCards(url));
   };
 
+  const getIngredientsByArea = async (url) => {
+    setIngredientsByArea(await recipesByArea(url));
+  };
+
+  const getFilterByArea = async (url, param) => {
+    setMeals(await filterByArea(url, param));
+  };
+
   const contextValue = {
     visibleSearch,
     setVisibleSarch,
@@ -77,8 +89,16 @@ function Provider({ children }) {
     dataRandom,
     getIngredientsList,
     ingredientsList,
+    getIngredientsByArea,
+    ingredientsByArea,
+    setIngredientsByArea,
+    getFilterByArea,
+    meals,
+    setMeals,
     isFinishedRecip,
     setIsFinishedRecip,
+    favoriteList,
+    setFavoriteList,
   };
 
   return (
