@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import CardDrinkFavorite from '../Components/CardDrinkFavorite';
 import CardFoodFavorite from '../Components/CardFoodFavorite';
 import Header from '../Components/Header';
+import ReceitasContext from '../Context/ReceitasContext';
 
 function ReceitasFavoritas() {
-  const getFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const { favoriteList, setFavoriteList } = useContext(ReceitasContext);
+
+  useEffect(() => {
+    const list = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    setFavoriteList(list);
+  }, []);
 
   return (
     <section>
@@ -13,7 +19,7 @@ function ReceitasFavoritas() {
         <button type="button" data-testid="filter-by-food-btn">Food</button>
         <button type="button" data-testid="filter-by-drink-btn">Drinks</button>
         <button type="button" data-testid="filter-by-all-btn">All</button>
-        {getFavoriteRecipes
+        {favoriteList
           .map(({ name, type, category, area, image, id, alcoholicOrNot }, index) => (
             <section key={ id }>
               { type === 'comida' ? <CardFoodFavorite
@@ -30,6 +36,7 @@ function ReceitasFavoritas() {
                     name={ name }
                     image={ image }
                     index={ index }
+                    id={ id }
                   />)}
             </section>
           )) }

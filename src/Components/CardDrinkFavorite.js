@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import ReceitasContext from '../Context/ReceitasContext';
 
 function CardDrinkFavorite({ name, image, alcoholicOrNot, index, id }) {
   const [isFavorited, setIsFavorited] = useState();
+  const { setFavoriteList } = useContext(ReceitasContext);
 
   // https://pt.stackoverflow.com/questions/229222/como-excluir-um-produto-com-id-no-sessionstorage
   function removeItem(idCard) {
@@ -13,6 +15,7 @@ function CardDrinkFavorite({ name, image, alcoholicOrNot, index, id }) {
     for (let i = 0; i < obj.length; i += 1) { // loop para buscar o id
       if (obj[i].id === idCard) { // verifica id
         obj.splice(i, 1); // remove item
+        setFavoriteList(obj);
         break; // finaliza o loop
       }
     }
@@ -20,6 +23,7 @@ function CardDrinkFavorite({ name, image, alcoholicOrNot, index, id }) {
   }
 
   const setFavorited = (idFood) => {
+    console.log(idFood);
     if (isFavorited) {
       setIsFavorited(false);
     } else {
@@ -27,11 +31,13 @@ function CardDrinkFavorite({ name, image, alcoholicOrNot, index, id }) {
       setIsFavorited(true);
     }
   };
+
   return (
     <section className="display-card">
       <img
+        className="card-img-top"
         src={ image }
-        alt={ `imagem do prato ${name}` }
+        alt={ name }
         data-testid={ `${index}-horizontal-image` }
       />
       <h3 data-testid={ `${index}-horizontal-name` }>
@@ -51,7 +57,7 @@ function CardDrinkFavorite({ name, image, alcoholicOrNot, index, id }) {
       <button type="button" onClick={ () => setFavorited(id) }>
         <img
           src={ isFavorited ? whiteHeartIcon : blackHeartIcon }
-          alt="Imagem de coração para favoritar e desfavoritar"
+          alt="Imagem de favoritar e desfavoritar"
           data-testid={ `${index}-horizontal-favorite-btn` }
         />
       </button>

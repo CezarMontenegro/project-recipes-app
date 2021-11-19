@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import ReceitasContext from '../Context/ReceitasContext';
 
 function CardFoodFavorite({ name, category, image, area, index, id }) {
   const [isFavorited, setIsFavorited] = useState();
+  const { setFavoriteList } = useContext(ReceitasContext);
 
   // https://pt.stackoverflow.com/questions/229222/como-excluir-um-produto-com-id-no-sessionstorage
   function removeItem(idCard) {
@@ -13,6 +15,7 @@ function CardFoodFavorite({ name, category, image, area, index, id }) {
     for (let i = 0; i < obj.length; i += 1) { // loop para buscar o id
       if (obj[i].id === idCard) { // verifica id
         obj.splice(i, 1); // remove item
+        setFavoriteList(obj);
         break; // finaliza o loop
       }
     }
