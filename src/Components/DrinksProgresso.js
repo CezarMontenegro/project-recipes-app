@@ -12,6 +12,56 @@ function DrinksProgresso() {
   const { isFinishedRecip } = useContext(ReceitasContext);
   const history = useHistory();
 
+  const createLocalStorage = (obj) => {
+    const { idDrink, strCategory, strDrink, strAlcoholic, strDrinkThumb, strTags } = obj;
+    const limitDate = 10;
+    // Realizado consulta no site https://qastack.com.br/programming/1531093/how-do-i-get-the-current-date-in-javascript
+    const date = new Date().toJSON().slice(0, limitDate).replace(/-/g, '/');
+    localStorage.setItem('doneRecipes', JSON.stringify([{
+      id: idDrink,
+      type: 'bebida',
+      area: '',
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic,
+      name: strDrink,
+      image: strDrinkThumb,
+      doneDate: date,
+      tags: strTags ? strTags.split(',') : [],
+    }]));
+  };
+
+  const getLocalStorage = (obj) => {
+    const storage = JSON.parse(localStorage.getItem('doneRecipes'));
+    const { idDrink, strCategory, strAlcoholic, strDrink, strDrinkThumb, strTags } = obj;
+    const limitDate = 10;
+    const date = new Date().toJSON().slice(0, limitDate).replace(/-/g, '/');
+    localStorage.setItem('doneRecipes', JSON.stringify([...storage, {
+      id: idDrink,
+      type: 'bebida',
+      area: '',
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic,
+      name: strDrink,
+      image: strDrinkThumb,
+      doneDate: date,
+      tags: strTags ? strTags.split(',') : [],
+    }]));
+  };
+
+  const verifyLocalStorage = (obj) => {
+    console.log(obj);
+    if (!localStorage.doneRecipes) {
+      createLocalStorage(obj);
+    } else {
+      getLocalStorage(obj);
+    }
+  };
+
+  const handleClick = (obj) => {
+    verifyLocalStorage(obj);
+    history.push('/receitas-feitas');
+  };
+
   return (
     <section>
       { dataIdCard.drinks && dataIdCard.drinks
@@ -33,7 +83,7 @@ function DrinksProgresso() {
                 data-testid="finish-recipe-btn"
                 className="btn-startRecipe"
                 disabled={ isFinishedRecip }
-                onClick={ () => history.push('/receitas-feitas') }
+                onClick={ () => handleClick(dataIdCard.drinks[0]) }
               >
                 Finalizar Receita
               </button>

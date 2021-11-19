@@ -22,12 +22,8 @@ function Receitas() {
       getAPIingredient(urlIngredientsComidas, '');
     }
   }, []);
+
   useEffect(() => { getApiCategories(urlCategoriesFood); }, []);
-  /*  useEffect(() => {
-    if (dataFilterCategory.meals && dataFilterCategory.meals.length > 0) {
-      setIsFilter(true);
-    }
-  }, []); */
 
   const handleClickCategory = (param) => {
     getApiFilter(urlFilterFood, param);
