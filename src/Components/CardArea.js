@@ -12,7 +12,7 @@ const CardArea = () => {
         .map(({ idMeal, strMeal, strMealThumb }, index) => (
           <Link
             key={ idMeal }
-            to={ `/bebidas/${idMeal}` }
+            to={ `/comidas/${idMeal}` }
           >
             <div
               key={ idMeal }
@@ -25,7 +25,6 @@ const CardArea = () => {
                 src={ strMealThumb }
                 alt={ strMeal }
                 data-testid={ `${index}-card-img` }
-                onClick={ () => redirect(idMeal) }
               />
               <div className="card-body">
                 <h5
