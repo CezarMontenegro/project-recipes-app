@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReceitasContext from '../Context/ReceitasContext';
 import getIngredients, { addValueDrinkInStorage,

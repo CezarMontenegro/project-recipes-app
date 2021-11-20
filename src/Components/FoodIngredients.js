@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router';
+import { useParams, useHistory } from 'react-router-dom';
 import ReceitasContext from '../Context/ReceitasContext';
 import getIngredients, { getQuantIngredients } from '../helper/functionsHelper';
 import UlIngredients from './UlIngredients';
@@ -44,7 +44,7 @@ function FoodIngredients() {
               src={ strYoutube.replace('watch?v=', 'embed/') }
               frameBorder="0"
               data-testid="video"
-              title="recipe"
+              title="video player"
               allowFullScreen
             />
             <h3>Recomendadas</h3>
