@@ -11,9 +11,7 @@ function ExplorarComidas() {
 
   useEffect(() => { getRandom(randomFood); }, []);
 
-  const handleClick = (path) => {
-    history.push(path);
-  };
+  const handleClick = (path) => history.push(path);
 
   return (
     <section>

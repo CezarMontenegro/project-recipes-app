@@ -40,18 +40,13 @@ function FoodIngredients() {
             />
             <h5>Instructions</h5>
             <p data-testid="instructions">{strInstructions}</p>
-            <video
+            <iframe
+              src={ strYoutube.replace('watch?v=', 'embed/') }
+              frameBorder="0"
               data-testid="video"
-              controls
-              src={ strYoutube }
-            >
-              <track
-                default
-                kind="captions"
-                srcLang="en"
-                src={ strYoutube }
-              />
-            </video>
+              title="recipe"
+              allowFullScreen
+            />
             <h3>Recomendadas</h3>
             <section className="section-carousel">
               { sugestions && sugestions
