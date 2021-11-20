@@ -20,6 +20,7 @@ function ComidaDetalhes() {
   useEffect(() => {
     getCardById(urlIdFood, id);
     getAPIname(urlNameBebidas, '');
+    console.log('teste');
     window.scrollTo(0, 0);
   }, []);
 
@@ -31,6 +32,7 @@ function ComidaDetalhes() {
       === dataIdCard.meals[0].idMeal);
       setIsfavorite(verifyIfExists);
     }
+    console.log('teste 2');
   }, [dataIdCard]);
 
   const handleShare = () => {

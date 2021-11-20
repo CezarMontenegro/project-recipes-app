@@ -17,7 +17,9 @@ function BebidasDetalhes() {
   const [isCopyed, setIsCopyed] = useState(false);
   let getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
-  useEffect(() => { getCardById(urlIdDrink, id); }, []);
+  useEffect(() => {
+    getCardById(urlIdDrink, id);
+  }, []);
   useEffect(() => { getAPIname(urlNameComidas, ''); }, []);
 
   useEffect(() => {
