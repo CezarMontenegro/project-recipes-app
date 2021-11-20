@@ -12,7 +12,7 @@ const CardFood = () => {
         .map(({ idMeal, strMeal, strMealThumb }, index) => (
           <Link
             key={ idMeal }
-            to={ `/comidas/${idMeal}` }
+            to="/comidas/"
           >
             <div
               key={ idMeal }
