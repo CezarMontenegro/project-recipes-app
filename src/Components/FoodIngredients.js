@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router';
+import { useParams, useHistory } from 'react-router-dom';
 import ReceitasContext from '../Context/ReceitasContext';
 import getIngredients, { getQuantIngredients } from '../helper/functionsHelper';
 import UlIngredients from './UlIngredients';
@@ -40,18 +40,12 @@ function FoodIngredients() {
             />
             <h5>Instructions</h5>
             <p data-testid="instructions">{strInstructions}</p>
-            <video
+            <iframe
               data-testid="video"
-              controls
+              title="video player"
               src={ strYoutube }
-            >
-              <track
-                default
-                kind="captions"
-                srcLang="en"
-                src={ strYoutube }
-              />
-            </video>
+              frameBorder="0"
+            />
             <h3>Recomendadas</h3>
             <section className="section-carousel">
               { sugestions && sugestions
