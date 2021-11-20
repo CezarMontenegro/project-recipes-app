@@ -41,10 +41,11 @@ function FoodIngredients() {
             <h5>Instructions</h5>
             <p data-testid="instructions">{strInstructions}</p>
             <iframe
+              src={ strYoutube.replace('watch?v=', 'embed/') }
+              frameBorder="0"
               data-testid="video"
               title="video player"
-              src={ strYoutube }
-              frameBorder="0"
+              allowFullScreen
             />
             <h3>Recomendadas</h3>
             <section className="section-carousel">

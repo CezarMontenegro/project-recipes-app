@@ -17,8 +17,11 @@ function ComidaDetalhes() {
   const [isCopyed, setIsCopyed] = useState(false);
   let getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
-  useEffect(() => { getCardById(urlIdFood, id); }, []);
-  useEffect(() => { getAPIname(urlNameBebidas, ''); }, []);
+  useEffect(() => {
+    getCardById(urlIdFood, id);
+    getAPIname(urlNameBebidas, '');
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (!localStorage.favoriteRecipes) {
