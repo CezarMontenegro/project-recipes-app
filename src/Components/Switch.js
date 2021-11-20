@@ -28,6 +28,11 @@ const Switchs = () => (
       path="/explorar/bebidas/ingredientes"
       component={ ExplorarBebidasIngredientes }
     />
+    <Route exact path="/" component={ Login } />
+    <Route path="/explorar" component={ Explorar } />
+    <Route path="/comidas" component={ Receitas } />
+    <Route path="/bebidas" component={ Bebidas } />
+    <Route path="/perfil" component={ Perfil } />
     <Route path="/explorar/bebidas/area" component={ NotFound } />
     <Route path="/explorar/comidas/area" component={ ExplorarArea } />
     <Route path="/comidas/:id/in-progress" component={ ProgressoComidas } />
@@ -38,11 +43,6 @@ const Switchs = () => (
     <Route path="/explorar/bebidas" component={ ExplorarBebidas } />
     <Route path="/receitas-feitas" component={ ReceitasFeitas } />
     <Route path="/receitas-favoritas" component={ ReceitasFavoritas } />
-    <Route path="/perfil" component={ Perfil } />
-    <Route path="/explorar" component={ Explorar } />
-    <Route path="/comidas" component={ Receitas } />
-    <Route path="/bebidas" component={ Bebidas } />
-    <Route exact path="/" component={ Login } />
   </Switch>
 );
 
