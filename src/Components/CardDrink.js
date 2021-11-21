@@ -7,7 +7,7 @@ const CardDrink = () => {
   const NUMBER = 12;
   const history = useHistory();
 
-  const handleClick = (param) => history.push(`/comidas/${param}`);
+  const handleClick = (param) => history.push(`/bebidas/${param}`);
 
   return (
     <section className="display-card">
