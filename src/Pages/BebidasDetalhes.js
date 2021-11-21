@@ -19,18 +19,16 @@ function BebidasDetalhes() {
 
   useEffect(() => {
     getCardById(urlIdDrink, id);
+    getAPIname(urlNameComidas, '');
+    window.scrollTo(0, 0);
   }, []);
-  useEffect(() => { getAPIname(urlNameComidas, ''); }, []);
 
   useEffect(() => {
-    if (!localStorage.favoriteRecipes) {
-      setIsfavorite(false);
-    } else if (dataIdCard.drinks) {
-      const verifyIfExists = getStorage.some((obj) => obj.id
-      === dataIdCard.drinks[0].idDrink);
+    if (localStorage.favoriteRecipes) {
+      const verifyIfExists = getStorage.some((obj) => obj.id === id);
       setIsfavorite(verifyIfExists);
     }
-  }, [dataIdCard]);
+  }, []);
 
   const getLocalStorage = () => {
     const { idDrink, strCategory, strDrink,

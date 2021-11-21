@@ -20,20 +20,15 @@ function ComidaDetalhes() {
   useEffect(() => {
     getCardById(urlIdFood, id);
     getAPIname(urlNameBebidas, '');
-    console.log('teste');
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    if (!localStorage.favoriteRecipes) {
-      setIsfavorite(false);
-    } else if (dataIdCard.meals) {
-      const verifyIfExists = getStorage.some((obj) => obj.id
-      === dataIdCard.meals[0].idMeal);
+    if (localStorage.favoriteRecipes) {
+      const verifyIfExists = getStorage.some((obj) => obj.id === id);
       setIsfavorite(verifyIfExists);
     }
-    console.log('teste 2');
-  }, [dataIdCard]);
+  }, []);
 
   const handleShare = () => {
     copy(window.location.href);
