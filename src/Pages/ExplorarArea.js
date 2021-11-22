@@ -11,23 +11,20 @@ import { urlExploreByArea, urlIngredientsComidas,
 function ExplorarArea() {
   const { getIngredientsByArea,
     ingredientsByArea, getAPIingredient, getFilterByArea } = useContext(ReceitasContext);
-  const [areaValue, setAreaValue] = useState('');
   const [isFilter, setIsFilter] = useState(false);
 
   useEffect(() => { getIngredientsByArea(urlExploreByArea); }, []);
   useEffect(() => { getAPIingredient(urlIngredientsComidas, ''); }, []);
 
-  useEffect(() => {
-    if (areaValue === 'All') {
+  const handleChange = ({ target: { value } }) => {
+    if (value === 'All') {
       getAPIingredient(urlIngredientsComidas, '');
       setIsFilter(false);
-    }
-
-    if (areaValue && areaValue !== 'All') {
-      getFilterByArea(urlFilterByArea, areaValue);
+    } else {
+      getFilterByArea(urlFilterByArea, value);
       setIsFilter(true);
     }
-  }, [areaValue]);
+  };
 
   return (
     <div>
@@ -37,8 +34,7 @@ function ExplorarArea() {
       <select
         data-testid="explore-by-area-dropdown"
         name=""
-        value={ areaValue }
-        onChange={ ({ target: { value } }) => setAreaValue(value) }
+        onChange={ handleChange }
       >
         <option data-testid="All-option" value="All">All</option>
         {ingredientsByArea.meals && ingredientsByArea.meals.map(({ strArea }) => (
